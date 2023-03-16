@@ -119,19 +119,19 @@ const preloadImages = () => {
       return (
         <>
           <link
-            key={section.id}
+            key={section.id + 'logo'}
             rel="preload"
             href={`/assets/${section.id.toLowerCase()}.png`}
             as="image"
           />
           <link
-            key={section.id}
+            key={section.id + 'arc'}
             rel="preload"
             href={`/assets/${section.id.toLowerCase()}.svg`}
             as="image"
           />
           <link
-            key={section.id}
+            key={section.id + 'back'}
             rel="preload"
             href={`/assets/delv-${section.id.toLowerCase()}.svg`}
             as="image"
