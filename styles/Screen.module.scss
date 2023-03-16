@@ -1,0 +1,27 @@
+.screen {
+    // width: 100%;
+    // height: 100vh;
+    // align-items: center;
+    // justify-content: space-around;
+    // display: flex;
+    // position: fixed;
+    // flex-direction: column;
+    // top: 0;
+    // left: 0;
+    // line-height: 1.6;
+    // font-size: 18px;
+    // text-align: center;
+    // padding: 10% 10%;
+}
+.delv_logo {
+    height: 50px;
+    position: fixed;
+    left: 40px;
+    top: 40px;
+    z-index: 5;
+}
+.link {
+    &:hover {
+      opacity: 0.8;
+    }
+}
