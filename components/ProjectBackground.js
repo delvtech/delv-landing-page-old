@@ -157,7 +157,7 @@ export function ProjectBackground({ projectId }) {
                     transition: { duration: 0.3, fill: "forwards"}
                 }}
             >
-                <Image src="/bg/elfiverse.jpg" fill style={{objectFit:"cover"}} />
+                <Image src="/bg/elfiverse.jpg" alt="Elfiverse" fill style={{objectFit:"cover"}} />
                 <motion.div 
                     style={{
                         background: "radial-gradient(80.95% 139.13% at 81.02% 48.44%, #FF6B6B 0%, #FEEC96 100%)",
@@ -212,7 +212,7 @@ export function ProjectBackground({ projectId }) {
                     transition: { duration: 0.3, fill: "forwards"}
                 }}
             >
-                <Image src="/bg/hyperdrive.jpg" fill style={{objectFit:"cover"}} />
+                <Image src="/bg/hyperdrive.jpg" alt="Hyperdrive" fill style={{objectFit:"cover"}} />
             </motion.div>
         ),
         'Agent_0': (
@@ -235,7 +235,7 @@ export function ProjectBackground({ projectId }) {
                     transition: { duration: 0.3, fill: "forwards"}
                 }}
             >
-                <Image src="/bg/agent_0.jpg" fill style={{objectFit:"cover"}} />
+                <Image src="/bg/agent_0.jpg" alt="Agent_0" fill style={{objectFit:"cover"}} />
             </motion.div>
         ),
         'Council': (
@@ -258,7 +258,7 @@ export function ProjectBackground({ projectId }) {
                     transition: { duration: 0.3, fill: "forwards"}
                 }}
             >
-                <Image src="/bg/council.jpg" fill style={{objectFit:"cover"}} />
+                <Image src="/bg/council.jpg" alt="Council" fill style={{objectFit:"cover"}} />
             </motion.div>
         ),
             

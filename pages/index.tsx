@@ -6,6 +6,7 @@ import { Screen } from '@/components/Screen'
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from 'react'
 import { ProjectBackground } from '@/components/ProjectBackground'
+import { useEffect } from 'react'
 
 type Section = {
   id: string
@@ -21,6 +22,7 @@ type Section = {
     h: number
   }
 }
+
 
 const sections: Section[] = [
   {
@@ -113,6 +115,21 @@ const sections: Section[] = [
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0)
+
+  // .alert if window scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      const sectionHeight = window.innerHeight
+      const sectionIndex = Math.floor(scrollPosition / sectionHeight)
+      setActiveSection(sectionIndex)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+  
+  
+
   return (
     <>
       <Head>

@@ -58,7 +58,7 @@ export function Screen({ activeSection }) {
             
         )}
 
-    if (!activeSection.layout) {  
+    else {  
         return (
             <div>
                 <motion.div
