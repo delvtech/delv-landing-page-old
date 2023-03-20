@@ -13,16 +13,36 @@
     letter-spacing: 0.21em;
     text-transform: uppercase;
     cursor: pointer;
+    transition: 1s ease-in opacity;
+    &:hover{
+        opacity: 1 !important;
+        
+    }
     // border: 1px solid red;
 }
 .caret {
     height: 1rem;
     pointer-events: none;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    width: 200px;
+    width: 130px;
     height: 34px;
     position: absolute;
+}
+.caret:before,
+.caret:after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    z-index: -1;
+    background: linear-gradient(to right, white, transparent);
+}
+.caret:before {
+}
+.caret:after {
+    bottom:2px; 
+    top: auto;
 }
 .sidebar {
     &_left {
@@ -41,7 +61,6 @@
 .main {
     display: flex;
     height: 100vh;
-    margin-bottom:0.5px;
     padding: 45px 40px 22px 40px;
 }
 .content {
@@ -57,10 +76,63 @@
     text-transform: uppercase;
     display: flex;
     gap: 13px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 10px;
+    /* identical to box height, or 83% */
+    letter-spacing: 0.1em;
 }
 
 .sidebar_right .nav_footer {
     justify-content: flex-end;
+    align-items: flex-end;
     text-align: right;
     display: flex;
+    
+}
+
+.nav_footer_group, .nav_footer_group_active {
+    text-align: left;
+    div {
+        margin: 10px 0;
+        font-weight: 400;
+    }
+}
+
+
+.nav_footer_group {
+    div {
+        display: none;
+    }
+    
+}
+.nav_footer_group_title {
+    position: relative;
+    cursor: pointer !important;
+}
+.nav_footer_group_active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
+    
+    .nav_footer_group_title:after {
+        content: "";
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid white;
+        position: absolute;
+        margin-top: 2px;
+    }
+    div {
+        margin: 10px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+    
 }

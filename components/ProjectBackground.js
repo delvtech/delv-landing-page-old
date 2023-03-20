@@ -18,7 +18,7 @@ export function ProjectBackground({ projectId }) {
                 }}
                 initial={{ opacity: 0, y: 50, scaleY:0.5, transformOrigin: 'bottom' }}
                 animate={{ opacity: 1, y: 0, scaleY:1, transformOrigin: 'bottom' }}
-                transition={{ duration: 1, fill: "forwards", delay: 0.2}}
+                transition={{ duration: 1, fill: "forwards"}}
             >
                 <motion.div 
                     style={{
