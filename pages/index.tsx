@@ -22,9 +22,9 @@ type Section = {
   }
 }
 
-const useScrollDirection = (activeSection, setActiveSection, isScrolling, setIsScrolling) => {
+const useScrollDirection = (activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
   useEffect(() => {
-    const handleScroll = (event) => {
+    const handleScroll = (event: WheelEvent) => {
       if (isScrolling) {
         return;
       }
@@ -154,7 +154,12 @@ const sections: Section[] = [
   }
 ]
 
-const Links = {
+const Links: {
+  [key: string]: {
+    name: string;
+    url: string;
+  }[];
+} = {
   "Build": [
     {
       "name": "Documentation",
@@ -246,7 +251,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
   // for every group of footer create toggles
-  const [footerToggles, setFooterToggles] = useState(Object.keys(Links).reduce((acc, key) => {
+  const [footerToggles, setFooterToggles] = useState(Object.keys(Links).reduce((acc: Record<string, boolean>, key: string) => {
     acc[key] = false
     return acc
   }, {}))
@@ -414,12 +419,12 @@ export default function Home() {
                 <div key={index} onClick={() => setFooterToggles({...footerToggles, [group]: !footerToggles[group]})} className={footerToggles[group]? styles.nav_footer_group_active: styles.nav_footer_group}>
                   <div className={styles.links}>
                     {Links[group].map((link, index) => (
-                      <div>
-                        <a key={index} href={link.url}>{link.name}</a>
+                      <div key={index}>
+                        <a href={link.url}>{link.name}</a>
                       </div>
                     ))}
                   </div>
-                  <span class={styles.nav_footer_group_title}>
+                  <span className={styles.nav_footer_group_title}>
                     {group}
                   </span>
                 </div>

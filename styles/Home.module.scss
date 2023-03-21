@@ -134,5 +134,30 @@
     .main {
         flex-direction: column;
     }
+    .sidebar {
+        align-items: center;
+        &_left {
+            width: 100%;
+            padding-bottom: 20px;
+        }
+        &_right {
+            width: 100%;
+            padding-top: 20px;
+        }
+    }
+    .caret {
+        display: none;
+    }
+    .projectNav {
+        width: 100%;
+        text-align: center;
+        max-height: 120px;
+        overflow-y:scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav_footer {
+        display: none;
+    }
     
 }

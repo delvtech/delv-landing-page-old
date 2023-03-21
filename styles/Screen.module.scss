@@ -25,3 +25,12 @@
       opacity: 0.8;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .screen {
+        max-width: 100%;
+       h1 {
+        display: none;
+       }
+    }
+}
