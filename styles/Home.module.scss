@@ -61,6 +61,7 @@
 .main {
     display: flex;
     height: 100vh;
+    max-height: -webkit-fill-available;
     padding: 40px 40px 22px 40px;
 }
 .content {
@@ -134,6 +135,7 @@
     .main {
         flex-direction: column;
         overflow-y: hidden;
+        margin-top: 50px;
     }
     .sidebar {
         align-items: center;

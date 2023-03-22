@@ -578,7 +578,7 @@ export default function Home() {
           <motion.div className={styles.nav_footer}>
             {Object.keys(Links).map((group, index) => (
                 <div key={index} onClick={() => setFooterToggles({...footerToggles, [group]: !footerToggles[group]})} className={footerToggles[group]? styles.nav_footer_group_active: styles.nav_footer_group}>
-                  <div className={styles.links}>
+                  <div>
                     {Links[group].map((link, index) => (
                       <div key={index}>
                         <a href={link.url}>{link.name}</a>
