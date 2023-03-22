@@ -23,8 +23,10 @@ type Section = {
 }
 
 const useScrollDirection = (activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
+  const [touchStartY, setTouchStartY] = useState(null);
+
   useEffect(() => {
-    const handleScroll = (event: WheelEvent) => {
+    const handleScroll = (event) => {
       if (isScrolling) {
         return;
       }
@@ -39,12 +41,46 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
       }, 2000);
     };
 
+    const handleTouchStart = (event) => {
+      setTouchStartY(event.touches[0].clientY);
+    };
+
+    const handleTouchMove = (event) => {
+      if (!touchStartY) return;
+
+      const touchEndY = event.touches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      if (Math.abs(deltaY) > 50) { // Adjust this value for sensitivity
+        if (deltaY > 0) {
+          handleScrollDown();
+        } else {
+          handleScrollUp();
+        }
+        setTouchStartY(null);
+        setIsScrolling(true);
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 2000);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      setTouchStartY(null);
+    };
+
     window.addEventListener('wheel', handleScroll);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', handleTouchEnd);
 
     return () => {
       window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [activeSection, isScrolling]);
+  }, [activeSection, isScrolling, touchStartY]);
 
   const handleScrollUp = () => {
     if (activeSection > 0) {
