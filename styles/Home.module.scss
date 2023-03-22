@@ -61,7 +61,7 @@
 .main {
     display: flex;
     height: 100vh;
-    padding: 45px 40px 22px 40px;
+    padding: 40px 40px 22px 40px;
 }
 .content {
     display: flex;
@@ -151,9 +151,23 @@
     .projectNav {
         width: 100%;
         text-align: center;
-        max-height: 120px;
+        max-height: 100px;
         overflow-y:scroll;
         -webkit-overflow-scrolling: touch;
+        // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.33%, #FFFFFF 44.58%, rgba(255, 255, 255, 0) 92.19%);
+        // -webkit-background-clip: text;
+        // -webkit-text-fill-color: transparent;
+        // background-clip: text;
+        // text-fill-color: transparent;
+        padding-top: 30px;
+        &_item {
+            opacity: 1 !important;
+        }
+    }
+
+
+    .projectNav {
+        display: none;
     }
 
     .nav_footer {

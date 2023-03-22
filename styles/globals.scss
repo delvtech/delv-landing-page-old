@@ -1,0 +1,247 @@
+:root {
+  --foreground-rgb: 255, 255, 255;
+
+  --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+  --secondary-glow: linear-gradient(
+    to bottom right,
+    rgba(1, 65, 255, 0),
+    rgba(1, 65, 255, 0),
+    rgba(1, 65, 255, 0.3)
+  );
+
+  --tile-start-rgb: 2, 13, 46;
+  --tile-end-rgb: 2, 5, 19;
+  --tile-border: conic-gradient(
+    #ffffff80,
+    #ffffff40,
+    #ffffff30,
+    #ffffff20,
+    #ffffff10,
+    #ffffff10,
+    #ffffff80
+  );
+
+  --callout-rgb: 20, 20, 20;
+  --callout-border-rgb: 108, 108, 108;
+  --card-rgb: 100, 100, 100;
+  --card-border-rgb: 200, 200, 200;
+}
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  max-width: 100vw;
+  overflow-x: hidden;
+  white-space: pre-line;
+  /* font-family: "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #080607;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+.prod-descr {
+  font-size: 18px;
+  line-height: 1.222;
+  margin: 15px auto;
+  max-width: 580px;
+}
+
+.mobile_nav_toggle {
+  position: relative;
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+  margin-top: 10px;
+  .dash {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    &:first-child {
+      top: 0;
+    }
+    &:last-child {
+      bottom: 0;
+    }
+  }
+  &__open {
+    .dash {
+      &:first-child {
+        transform: translateY(10px) rotate(45deg);
+      }
+      &:last-child {
+        transform: translateY(-11px) rotate(-45deg);
+      }
+    }
+  }
+}
+.mobile_nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 500;
+  padding: 120px 40px 30px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  overflow-y: scroll;
+  &_projects {
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 50px;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+  }
+}
+
+.delv_logo {
+  height: 50px;
+  z-index: 600;
+}
+
+.mobile-only {
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+  .delv_logo {
+    height: 50px;
+    // position: fixed;
+    left: 40px;
+    top: 40px;
+    z-index: 600;
+  }
+  .has_open_menu {
+    .delv_logo {
+      position: fixed;
+      left: 40px;
+      top: 40px;
+      z-index: 600;
+    }
+  }
+  .mobile_nav_toggle {
+    position: fixed;
+    right: 40px;
+    top: 40px;
+    z-index: 600;
+  }
+  .mobile-only {
+    display: block;
+  }
+  .font-sec {
+    font-size: 32px;
+  }
+  .prod-descr {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 0 20px;
+    margin-top: 50px;
+  }
+  .project_logo {
+    min-width: 0 !important;
+    min-height: 200px;
+  }
+  .section_Echo {
+    .project_logo img{
+      max-width: 206px;
+    }
+  }
+  .project_logo {
+    margin-bottom: 20%;
+  }
+  .sections-scroll {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.33%, #FFFFFF 44.58%, rgba(255, 255, 255, 0) 92.19%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 38px;
+    /* or 174% */
+
+    text-align: center;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    height: 115px;
+    flex: 280px;
+  }
+  .main-intro {
+    display: none;
+  }
+  .section_Delv {
+    .main-intro {
+      margin-top: 15% !important;
+      margin-bottom: 100px !important;
+      display: block;
+      font-weight: 500;
+      font-size: 39px;
+      line-height: 48px;
+    }
+  }
+  .project_logo {
+    img {
+      width: 300px;
+      margin-top: 50px !important;
+    }
+  }
+  .section_Element {
+    .project_logo {
+      div {
+        inset: -5% !important;
+        margin-top: -13% !important;
+      }
+    }
+  }
+  .mobile_nav_links {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 30px;
+    line-height: 32px;
+  }
+  .mobile_nav_links_heading {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 15px;
+    display: block;
+  }
+}

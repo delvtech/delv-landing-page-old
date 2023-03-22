@@ -134,7 +134,7 @@ export function ProjectBackground({ projectId }) {
                     transition: { duration: 0.3, fill: "forwards"}
                 }}
             >
-                <Image src="/bg/echo.png" fill cover />
+                <Image src="/bg/echo.jpg" fill cover />
             </motion.div>
         ),
         'Elfiverse': (

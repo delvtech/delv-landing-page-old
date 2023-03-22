@@ -71,7 +71,7 @@ const sections: Section[] = [
     layout: 'main',
     caretOffset: 31,
     title: 'The Factory of DeFi',
-    description: 'Delv is building the full stack of decentralized finance, from core infrastructure to structured products.',
+    description: 'Delv is building the full stack of decentralized finance, from core infrastructure to structured products.',
     backgroundClass: 'bg-white',
   },
   {
@@ -163,55 +163,55 @@ const Links: {
   "Build": [
     {
       "name": "Documentation",
-      "url": "https://element.fi"
+      "url": "https://docs.element.fi/"
     },
     {
       "name": "White paper",
-      "url": "https://council.element.fi/"
+      "url": "https://paper.element.fi//"
     },
     {
       "name": "Tutorial",
-      "url": "https://council.element.fi/"
+      "url": "https://medium.com/element-finance/how-to-access-high-fixed-apr-on-usd-eth-and-btc-in-4-minutes-641f057e283b"
     },
     {
       "name": "Fixed interest",
-      "url": "https://council.element.fi/"
+      "url": "https://medium.com/element-finance/fixed-rate-interest-markets-a-casual-users-journey-through-fixed-rate-interest-using-element-50f420df1859"
     },
     {
       "name": "Bug bounty",
-      "url": "https://council.element.fi/"
+      "url": "https://immunefi.com/bounty/elementfinance/"
     },
     {
       "name": "Brand assets",
-      "url": "https://council.element.fi/"
+      "url": "https://github.com/element-fi/brand-assets"
     },
     {
       "name": "Jobs",
-      "url": "https://council.element.fi/"
+      "url": "tbc"
     }
   ],
-  "Community" : [
+  "Community": [
     {
-      "name": 'Twitter',
-      "url": 'https://twitter.com/delvfinance',
+      "name": "Twitter",
+      "url": "https://twitter.com/element_fi"
     },
     {
-      "name": 'Discord',
-      "url": 'https://discord.gg/8Z8Y4Z8',
+      "name": "Discord",
+      "url": "https://discord.gg/EEfKmfQdtx"
     },
     {
-      "name": 'Blog',
-      "url": 'https://medium.com/delv-finance',
+      "name": "Blog",
+      "url": "https://blog.element.fi/"
     },
     {
-      "name": 'Github',
-      "url": ''
+      "name": "Github",
+      "url": "https://github.com/element-fi"
     },
     {
-      "name": 'YouTube',
-      "url": 'https',
+      "name": "YouTube",
+      "url": "https://www.youtube.com/channel/UCwxX4xrw-AZF_7dB7gVMaSw"
     }
-  ],
+  ]
 }
 
 // preload images using head and link preload
@@ -255,6 +255,7 @@ export default function Home() {
     acc[key] = false
     return acc
   }, {}))
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useScrollDirection(activeSection,setActiveSection, isScrolling, setIsScrolling)
   
@@ -267,12 +268,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         {preloadImages()}
       </Head>
-      <main className={styles.main}>
+      <main className={styles.main + ' ' + (mobileMenuOpen ? "has_open_menu" : '') + "section_" + sections[activeSection].id}>
         <div className={styles.sidebar_left}>
-          <div className={styles.delv_logo} onClick={() => setActiveSection(0)}>
+          <div className="delv_logo" onClick={() => setActiveSection(0)}>
               <motion.div
                   style={{
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'flex-start',
                     // background: 'url(/assets/logo.png)',// debug logo size
@@ -304,8 +305,8 @@ export default function Home() {
                 >
 
                   <Image
-                      width={120}
-                      height={24}
+                      width={86}
+                      height={19}
                       src={`/assets/delv.svg`}
                       alt={sections[activeSection]?.title || 'Delv'}
                       style={{
@@ -342,10 +343,10 @@ export default function Home() {
                   <Image 
                     src={`/assets/delv-${(sections[activeSection]?.id !== 'About') && sections[activeSection]?.id.toLowerCase() || 'delv'}.svg`} 
                     style={{
-                      // marginLeft: '2px',
+                      marginLeft: '5px',
                     }}
-                    width={31}
-                    height={62} 
+                    width={24}
+                    height={47} 
                     alt={sections[activeSection]?.id}
                     />
                   </motion.div>
@@ -353,6 +354,38 @@ export default function Home() {
 
                   
               </motion.div>
+          </div>
+          <div className="mobile-only">
+            <div className={"mobile_nav_toggle" + ' ' + (mobileMenuOpen ? "mobile_nav_toggle__open" : '')}
+             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <div className="dash"></div>
+              <div className="dash"></div>
+            </div>
+            <div className={"mobile_nav"} style={{display: mobileMenuOpen ? 'block' : 'none'}}>
+              <div className="mobile_nav_projects">
+                {sections.map((section, index) => (
+                  <div className={styles.mobile_nav_item} onClick={() => {setActiveSection(index); setMobileMenuOpen(false)}} key={section.id}>
+                    {section.id}
+                  </div>
+                ))}
+              </div>
+              <div className="mobile_nav_links">
+                {Object.keys(Links).map((group, index) => (
+                    <div key={group}>
+                      <span className="mobile_nav_links_heading">
+                        {group}
+                      </span>
+                      <div className={styles.links}>
+                        {Links[group].map((link, index) => (
+                          <div key={index}>
+                            <a href={link.url}>{link.name}</a>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
           </div>
           
           <motion.div 
@@ -398,7 +431,7 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
-          <motion.div className={styles.nav_footer}>
+          <motion.div className={styles.nav_footer + " mobile-hidden"}>
             <a href="#" onClick={() => setActiveSection(7)}>
               About
             </a>
@@ -410,10 +443,17 @@ export default function Home() {
             <ProjectBackground projectId={sections[activeSection]?.id} key={sections[activeSection]?.id} />
           </AnimatePresence>
           <AnimatePresence mode="wait">
-            <Screen activeSection={sections[activeSection]} key={activeSection}  />
+            <Screen 
+              activeSection={sections[activeSection]} 
+              sections={sections}
+              setActiveSection={setActiveSection}
+              activeSectionPosition={activeSection}
+              Links={Links}
+              key={activeSection}  
+            />
           </AnimatePresence>
         </div>
-        <div className={styles.sidebar_right}>
+        <div className={styles.sidebar_right + " mobile-hidden"}>
           <motion.div className={styles.nav_footer}>
             {Object.keys(Links).map((group, index) => (
                 <div key={index} onClick={() => setFooterToggles({...footerToggles, [group]: !footerToggles[group]})} className={footerToggles[group]? styles.nav_footer_group_active: styles.nav_footer_group}>

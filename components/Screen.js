@@ -1,5 +1,5 @@
 import styles from '../styles/Screen.module.scss'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
@@ -30,7 +30,7 @@ let animations = {
 }
 
 
-export function Screen({ activeSection }) {
+export function Screen({ activeSection, sections, setActiveSection, activeSectionPosition, Links }) {
     if (!activeSection) return null
     if (activeSection.layout === 'main') {
         return (
@@ -45,12 +45,14 @@ export function Screen({ activeSection }) {
                         {...animations.normal()}
                         transit={{duration: 1 }}
                         >
-                            <h1 style={{marginBottom: '1em', marginTop:"-30%"}}> {activeSection?.title} </h1>
-                            <p className='font-sec'>
-                                {/* <Balancer> */}
-                                    {activeSection?.description}
-                                {/* </Balancer> */}
-                            </p>
+                            <AnimatePresence mode="wait">
+                                <h1 className='main-intro' style={{marginBottom: '1em', marginTop:"-30%"}}> {activeSection?.title} </h1>
+                                <p className='font-sec'>
+                                    {/* <Balancer> */}
+                                        {activeSection?.description}
+                                    {/* </Balancer> */}
+                                </p>
+                            </AnimatePresence>
 
                     </motion.div>
                 </motion.div>
@@ -58,7 +60,7 @@ export function Screen({ activeSection }) {
             
         )}
     if (activeSection.layout === 'about') {
-        <div>
+        return (<div>
             <motion.div
             className={styles.screen}
             >
@@ -67,13 +69,26 @@ export function Screen({ activeSection }) {
                     {...animations.normal()}
                     transition={{duration: 1}}
                     >
-                    <h1 style={{marginTop:"-10%"}}>
+                    <h1 className='main-intro' style={{marginTop:"30%"}}>
                         {activeSection?.title}
                     </h1>
                     <p className='font-sec prod-descr'>
                         <Balancer>
                             {activeSection?.description}
                         </Balancer>
+                    </p>
+                    <p className='font-sec prod-descr' style={{marginTop:"10%", fontSize: "13px", lineHeight: "19px"}}>
+                        {Object.keys(Links).map((group, index) => (
+                            <div key={group} style={{marginTop:"30px"}}>
+                                <div className={styles.links}>
+                                    {Links[group].map((link, index) => (
+                                    <div key={index}>
+                                        <a href={link.url}>{link.name}</a>
+                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
                     </p>
                     {activeSection?.link && (
                         <a href={activeSection?.link} target="_blank" rel="noopener noreferrer" className={styles.link}>
@@ -84,7 +99,7 @@ export function Screen({ activeSection }) {
                 <div className={styles.project_logo}>
                     <motion.div
                         {...animations.normal()}
-                        style={{width: '600px', height: '300px', position: 'relative', marginTop: '30px'}}
+                        style={{width: '600px', height: '300px', position: 'relative', marginTop: '30px', maxWidth:"100%"}}
                         transition={{ duration: 1, fill: "forwards"}}
                     >
                         {activeSection?.logo && (<Image
@@ -99,14 +114,25 @@ export function Screen({ activeSection }) {
                     </motion.div>
                 </div>
             </motion.div>
-        </div>
+        </div>)
     }
     
     return (
-        <div>
             <motion.div
             className={styles.screen}
             >
+                <motion.div className='mobile-only sections-scroll'
+                    {...animations.normal()}
+                    transition={{duration: 1}}
+                >
+                    {(sections.slice(activeSectionPosition-1, activeSectionPosition+2).map((section, i) => (
+                        <div key={section.id}>
+                            <a key={i} onClick={() => setActiveSection(activeSectionPosition+i-1)} className={activeSectionPosition+i-1 == activeSectionPosition ? 'active' : ''}>
+                                {section.id}
+                            </a>
+                        </div>
+                    )))}
+                </motion.div>
                 <motion.div 
                     style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', height: '100%', maxWidth:'800px',fontSize:'32px', margin: '0 auto', zIndex:'5'}}
                     {...animations.normal()}
@@ -130,6 +156,7 @@ export function Screen({ activeSection }) {
                     <motion.div
                         {...animations.normal()}
                         style={{width: `${activeSection.logo?.w}px`, height: `${activeSection.logo?.h}px`, position: 'relative', marginTop: '30px', minWidth: '600px', minHeight:'300px', maxWidth: '100%', maxHeight: '600px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', position:'relative', zIndex:'-1'}}
+                        className="project_logo"
                         transition={{ duration: 1, fill: "forwards"}}
                     >
                         {activeSection?.logo && (<Image
@@ -149,7 +176,6 @@ export function Screen({ activeSection }) {
                     </motion.div>
                 </div>
             </motion.div>
-        </div>
     )
   
 }
