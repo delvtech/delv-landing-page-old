@@ -133,6 +133,7 @@
 @media screen and (max-width: 768px) {
     .main {
         flex-direction: column;
+        overflow-y: hidden;
     }
     .sidebar {
         align-items: center;
