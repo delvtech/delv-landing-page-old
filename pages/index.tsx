@@ -23,10 +23,10 @@ type Section = {
 }
 
 const useScrollDirection = (activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
-  const [touchStartY, setTouchStartY] = useState(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = (event) => {
+    const handleScroll = (event : WheelEvent) => {
       if (isScrolling) {
         return;
       }
@@ -41,11 +41,11 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
       }, 2000);
     };
 
-    const handleTouchStart = (event) => {
+    const handleTouchStart = (event : TouchEvent) => {
       setTouchStartY(event.touches[0].clientY);
     };
 
-    const handleTouchMove = (event) => {
+    const handleTouchMove = (event : TouchEvent) => {
       if (!touchStartY) return;
 
       const touchEndY = event.touches[0].clientY;
