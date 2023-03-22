@@ -398,6 +398,91 @@ export default function Home() {
               <div className="dash"></div>
             </div>
             <div className={"mobile_nav"} style={{display: mobileMenuOpen ? 'block' : 'none'}}>
+            <div className="delv_logo" onClick={() => setActiveSection(0)}>
+                  <motion.div
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        // background: 'url(/assets/logo.png)',// debug logo size
+                        // backgroundSize: 'contain',
+                        // backgroundRepeat: 'no-repeat',
+                      }}
+
+                      initial={{
+                          opacity: 0.1,
+                          y: 50,
+                      }}
+                      animate={{            
+                        opacity: 1,  
+                        y: 0,
+                        transition:{
+                          duration: 1,
+                          fill: "forwards",
+                          // delay
+                          }
+                      }}
+                      exit={{
+                        opacity: 0,
+                        y: -30,
+                        transition: {
+                            duration: 0.3,
+                            fill: "forwards"
+                        }
+                      }}
+                    >
+
+                      <Image
+                          width={86}
+                          height={19}
+                          src={`/assets/delv.svg`}
+                          alt={sections[activeSection]?.title || 'Delv'}
+                          style={{
+                            marginTop: '-5px'
+                          }}
+                          />
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={sections[activeSection]?.id}
+                        initial={{
+                          opacity: 0,
+                          // x: 5
+                        }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                          x:0,
+                          transition: {
+                            duration: 0.3,
+                            fill: "forwards",
+                            // delay
+                          }
+                        }}
+                        exit={{
+                          opacity: 0,
+                          // x:5,
+                          transition: {
+                            duration: 0.3,
+                            fill: "forwards"
+                          }
+                        }}
+                      >
+
+                      <Image 
+                        src={`/assets/delv-${(sections[activeSection]?.id !== 'About') && sections[activeSection]?.id.toLowerCase() || 'delv'}.svg`} 
+                        style={{
+                          marginLeft: '5px',
+                        }}
+                        width={24}
+                        height={47} 
+                        alt={sections[activeSection]?.id}
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+
+                      
+                  </motion.div>
+              </div>
               <div className="mobile_nav_projects">
                 {sections.map((section, index) => (
                   <div className={styles.mobile_nav_item} onClick={() => {setActiveSection(index); setMobileMenuOpen(false)}} key={section.id}>

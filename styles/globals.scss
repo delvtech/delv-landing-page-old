@@ -111,12 +111,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100vh;
   z-index: 500;
-  padding: 120px 40px 30px;
+  padding: 40px 40px 30px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   overflow-y: scroll;
+
   &_projects {
     font-weight: 700;
+    margin-top: 40px;
     font-size: 34px;
     line-height: 50px;
     letter-spacing: 0.21em;
@@ -126,7 +128,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .delv_logo {
   height: 50px;
-  z-index: 600;
 }
 
 .mobile-only {
@@ -143,14 +144,12 @@ h1, h2, h3, h4, h5, h6 {
     // position: fixed;
     left: 40px;
     top: 40px;
-    z-index: 600;
   }
   .has_open_menu {
     .delv_logo {
-      position: fixed;
+      // position: fixed;
       left: 40px;
       top: 40px;
-      z-index: 600;
     }
   }
   .mobile_nav_toggle {
