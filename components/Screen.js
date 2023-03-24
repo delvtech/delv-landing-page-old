@@ -16,7 +16,6 @@ let animations = {
             transition: {
                 duration: 1,
                 delay,
-                ease: "easeOut"
             }
         },
         exit: {
@@ -24,6 +23,29 @@ let animations = {
             y: -30,
             transition: {
                 duration: 0.3
+            }
+        }
+    }),
+    logo: (delay = 0) => ({
+        initial: {
+            opacity: 0,
+            y: 100,
+        },
+        animate:{
+            opacity: [0, 0.8, 1],
+            y: [100, 0, 0],
+            transition: {
+                duration: 2,
+                delay,
+                ease: 'easeInOut'
+            }
+        },
+        exit: {
+            opacity: 0,
+            y: -30,
+            transition: {
+                duration: 0.3,
+                delay: 0
             }
         }
     })
@@ -57,7 +79,6 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     </motion.div>
                 </motion.div>
             </div>
-            
         )}
     if (activeSection.layout === 'about') {
         return (<div>
@@ -98,7 +119,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                 </motion.div>
                 <div className={styles.project_logo}>
                     <motion.div
-                        {...animations.normal()}
+                        {...animations.logo()}
                         style={{width: '600px', height: '300px', position: 'relative', marginTop: '30px', maxWidth:"100%"}}
                         transition={{ duration: 1, fill: "forwards"}}
                     >
@@ -121,7 +142,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
             <motion.div
             className={styles.screen}
             >
-                <motion.div className='mobile-only sections-scroll'
+                {/* <motion.div className='mobile-only sections-scroll'
                     {...animations.normal()}
                     transition={{duration: 1}}
                 >
@@ -132,7 +153,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                             </a>
                         </div>
                     )))}
-                </motion.div>
+                </motion.div> */}
                 <motion.div 
                     style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', height: '100%', maxWidth:'800px',fontSize:'32px', margin: '0 auto', zIndex:'5'}}
                     {...animations.normal()}
@@ -154,7 +175,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                 </motion.div>
                 <div className={styles.project_logo}>
                     <motion.div
-                        {...animations.normal()}
+                        {...animations.logo()}
                         style={{width: `${activeSection.logo?.w}px`, height: `${activeSection.logo?.h}px`, position: 'relative', marginTop: '30px', minWidth: '600px', minHeight:'300px', maxWidth: '100%', maxHeight: '600px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', position:'relative', zIndex:'-1'}}
                         className="project_logo"
                         transition={{ duration: 1, fill: "forwards"}}

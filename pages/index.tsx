@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.scss'
 import { Screen } from '@/components/Screen'
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ProjectBackground } from '@/components/ProjectBackground'
 
 type Section = {
@@ -283,6 +283,7 @@ const preloadImages = () => {
 
 
 
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
@@ -292,6 +293,32 @@ export default function Home() {
     return acc
   }, {}))
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const projectNavRef = useRef(null);
+
+  useEffect(() => {
+    if (projectNavRef.current) {
+      const sectionHeight = 34; // The height of each section in the project navigation
+      const targetScrollTop = activeSection * sectionHeight;
+      const duration = 500; // The duration of the animation in milliseconds
+  
+      const startTime = performance.now();
+      const startScrollTop = projectNavRef.current.scrollTop;
+  
+      const animateScroll = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+  
+        projectNavRef.current.scrollTop = startScrollTop + (targetScrollTop - startScrollTop) * progress;
+  
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+  
+      requestAnimationFrame(animateScroll);
+    }
+  }, [activeSection]);
 
   useScrollDirection(activeSection,setActiveSection, isScrolling, setIsScrolling)
   
@@ -511,6 +538,7 @@ export default function Home() {
           
           <motion.div 
             className={styles.projectNav}
+            ref={projectNavRef}
             transition={{ duration: 0.5 }}
             >
               <motion.div className={styles.caret} 
@@ -548,7 +576,9 @@ export default function Home() {
                 }} 
                 hidden={section.hidden}
               >
-                <span>{section.id}</span>
+                <span>
+                  {section.id}
+                </span>
               </motion.div>
             ))}
           </motion.div>

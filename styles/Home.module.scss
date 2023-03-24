@@ -162,16 +162,25 @@
         // -webkit-text-fill-color: transparent;
         // background-clip: text;
         // text-fill-color: transparent;
-        padding-top: 30px;
+        padding-top: 34px;
+        padding-bottom: 34px;
+        scrollbar-width: none; 
+        &::-webkit-scrollbar {
+            display: none;
+        }
         &_item {
             opacity: 1 !important;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 100px, #FFFFFF 140px, rgba(255, 255, 255, 0) 180px) fixed center center no-repeat;
+            background-size: cover;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     }
 
 
-    .projectNav {
-        display: none;
-    }
+    // .projectNav {
+    //     display: none;
+    // }
 
     .nav_footer {
         display: none;
