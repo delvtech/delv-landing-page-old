@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.scss'
 import { Screen } from '@/components/Screen'
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, MutableRefObject } from 'react'
 import { ProjectBackground } from '@/components/ProjectBackground'
 
 type Section = {
@@ -294,7 +294,7 @@ export default function Home() {
   }, {}))
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const projectNavRef = useRef(null);
+  const projectNavRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
     if (projectNavRef.current) {
@@ -305,7 +305,7 @@ export default function Home() {
       const startTime = performance.now();
       const startScrollTop = projectNavRef.current.scrollTop;
   
-      const animateScroll = (currentTime) => {
+      const animateScroll = (currentTime: number) => {  
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
   
