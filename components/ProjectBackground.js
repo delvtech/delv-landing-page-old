@@ -1,8 +1,34 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 export function ProjectBackground({ projectId }) {
+
+    const [isMobile, setIsMobile] = useState(false)
+    const [isTablet, setIsTablet] = useState(false)
+    const [isDesktop, setIsDesktop] = useState(false)
+
+    useEffect(() => {
+        const handleResize = () => {
+        if (window.innerWidth < 768) {
+            setIsMobile(true)
+            setIsTablet(false)
+            setIsDesktop(false)
+        } else if (window.innerWidth < 1024) {
+            setIsMobile(false)
+            setIsTablet(true)
+            setIsDesktop(false)
+        } else {
+            setIsMobile(false)
+            setIsTablet(false)
+            setIsDesktop(true)
+        }
+        }
+        window.addEventListener('resize', handleResize)
+        handleResize()
+        return () => window.removeEventListener('resize', handleResize)
+    }, [isMobile, isTablet, isDesktop])
+
     // map ids to return divs
     const projectBackgrounds = {
         'Delv': (
@@ -125,7 +151,9 @@ export function ProjectBackground({ projectId }) {
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                         aspectRatio: '761/586',
-                        transform: "translateZ(0)"
+                        transform: "translateZ(0)",
+                        bottom: isMobile ? '10%' : '',
+                        top: isDesktop ? '10%' : '',
                     }}
                     animate={{
                         opacity: 1,

@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100vh;
   z-index: 500;
-  padding: 40px 40px 30px;
+  padding: 60px 40px 30px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   overflow-y: scroll;
@@ -143,13 +143,13 @@ h1, h2, h3, h4, h5, h6 {
     height: 50px;
     position: fixed;
     left: 40px;
-    top: 40px;
+    top: 60px;
   }
   .has_open_menu {
     .delv_logo {
       // position: fixed;
       left: 40px;
-      top: 40px;
+      top: 60px;
     }
   }
   .mobile_nav_toggle {

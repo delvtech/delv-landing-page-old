@@ -26,7 +26,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = (event : WheelEvent) => {
+    const handleScroll = (event: WheelEvent) => {
       if (isScrolling) {
         return;
       }
@@ -41,11 +41,11 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
       }, 2000);
     };
 
-    const handleTouchStart = (event : TouchEvent) => {
+    const handleTouchStart = (event: TouchEvent) => {
       setTouchStartY(event.touches[0].clientY);
     };
 
-    const handleTouchMove = (event : TouchEvent) => {
+    const handleTouchMove = (event: TouchEvent) => {
       if (!touchStartY) return;
 
       const touchEndY = event.touches[0].clientY;
@@ -103,7 +103,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
 
 const sections: Section[] = [
   {
-    id : 'Delv',
+    id: 'Delv',
     layout: 'main',
     caretOffset: 31,
     title: 'The Factory of DeFi',
@@ -111,7 +111,7 @@ const sections: Section[] = [
     backgroundClass: 'bg-white',
   },
   {
-    id : 'Element',
+    id: 'Element',
     caretOffset: 72,
     title: 'Fixed rate protocol',
     description: 'It all began with Element, an open-source protocol for fixed and variable yield markets.',
@@ -180,7 +180,7 @@ const sections: Section[] = [
     }
   },
   {
-    id: 'About', 
+    id: 'About',
     hidden: true,
     layout: 'about',
     caretOffset: 72,
@@ -317,7 +317,7 @@ export default function Home() {
     window.addEventListener('resize', handleResize)
     handleResize()
     return () => window.removeEventListener('resize', handleResize)
-  }, [ isMobile, isTablet, isDesktop ])
+  }, [isMobile, isTablet, isDesktop])
 
   const projectNavRef = useRef() as MutableRefObject<HTMLDivElement>;
 
@@ -326,27 +326,27 @@ export default function Home() {
   //     const sectionHeight = 34; // The height of each section in the project navigation
   //     const targetScrollTop = activeSection * sectionHeight;
   //     const duration = 500; // The duration of the animation in milliseconds
-  
+
   //     const startTime = performance.now();
   //     const startScrollTop = projectNavRef.current.scrollTop;
-  
+
   //     const animateScroll = (currentTime: number) => {  
   //       const elapsed = currentTime - startTime;
   //       const progress = Math.min(elapsed / duration, 1);
-  
+
   //       projectNavRef.current.scrollTop = startScrollTop + (targetScrollTop - startScrollTop) * progress;
-  
+
   //       if (progress < 1) {
   //         requestAnimationFrame(animateScroll);
   //       }
   //     };
-  
+
   //     requestAnimationFrame(animateScroll);
   //   }
   // }, [activeSection]);
 
-  useScrollDirection(activeSection,setActiveSection, isScrolling, setIsScrolling)
-  
+  useScrollDirection(activeSection, setActiveSection, isScrolling, setIsScrolling)
+
   return (
     <>
       <Head>
@@ -359,7 +359,105 @@ export default function Home() {
       <main className={styles.main + ' ' + (mobileMenuOpen ? "has_open_menu" : '') + "section_" + sections[activeSection].id}>
         <div className={styles.sidebar_left}>
           <div className="delv_logo" onClick={() => setActiveSection(0)}>
-              <motion.div
+            <motion.div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                position: 'relative',
+                justifyContent: 'flex-start',
+                // background: 'url(/assets/logo.png)',// debug logo size
+                // backgroundSize: '120px 48px',
+                // backgroundRepeat: 'no-repeat',
+                // backgroundPositionY: '-3px',
+                // width: '120px',
+                // height: '48px',
+              }}
+
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: [0, 0.8, 1],
+                y: [30, 0, 0],
+                transition: {
+                  duration: 2,
+                  ease: 'easeInOut'
+                }
+              }}
+              exit={{
+                opacity: 0,
+                y: -30,
+                transition: {
+                  duration: 0.3,
+                  delay: 0
+                }
+              }}
+            >
+
+              <Image
+                width={86}
+                height={22}
+                src={`/assets/delv.svg`}
+                alt={sections[activeSection]?.title || 'Delv'}
+                style={{
+                  marginTop: '-5px'
+                }}
+              />
+              {sections.map((section, index) => {
+                return (
+                  <motion.div
+                    key={section?.id}
+                    style={{
+                      outline: 'none',
+                      position: 'absolute',
+                      left: '96px',
+                    }}
+                    initial={{
+                      opacity: 0.1,
+                      // x: 5
+                    }}
+                    animate={{
+                      opacity: (activeSection === index) ? 1 : 0,
+                      y: 0,
+                      x: 0,
+                      transition: {
+                        duration: 0.6,
+                        ease: 'easeInOut',
+                        // delay
+                      }
+                    }}
+                    exit={{
+                      opacity: 0.1,
+                      // x:5,
+                      transition: {
+                        duration: 0.3,
+                      }
+                    }}
+                  >
+
+                    <Image
+                      src={`/assets/delv-${(section?.id !== 'About') && section?.id.toLowerCase() || 'delv'}.svg`}
+                      width={24}
+                      height={47}
+                      alt={section?.id}
+                    />
+                  </motion.div>
+                )
+              })}
+
+
+            </motion.div>
+          </div>
+          <div className="mobile-only">
+            <div className={"mobile_nav_toggle" + ' ' + (mobileMenuOpen ? "mobile_nav_toggle__open" : '')}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <div className="dash"></div>
+              <div className="dash"></div>
+            </div>
+            <div className={"mobile_nav"} style={{ display: mobileMenuOpen ? 'block' : 'none' }}>
+              <div className="delv_logo" onClick={() => setActiveSection(0)}>
+                <motion.div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -376,237 +474,148 @@ export default function Home() {
                   initial={{
                     opacity: 0,
                     y: 30,
-                }}
-                animate={{
+                  }}
+                  animate={{
                     opacity: [0, 0.8, 1],
                     y: [30, 0, 0],
                     transition: {
-                        duration: 2,
-                        ease: 'easeInOut'
+                      duration: 2,
+                      ease: 'easeInOut'
                     }
-                }}
-                exit={{
+                  }}
+                  exit={{
                     opacity: 0,
                     y: -30,
                     transition: {
-                        duration: 0.3,
-                        delay: 0
+                      duration: 0.3,
+                      delay: 0
                     }
-                }}
+                  }}
                 >
 
                   <Image
-                      width={86}
-                      height={22}
-                      src={`/assets/delv.svg`}
-                      alt={sections[activeSection]?.title || 'Delv'}
-                      style={{
-                        marginTop: '-5px'
-                      }}
-                      />
-                {sections.map((section, index) => {
-                  return (
-                  <motion.div
-                    key={section?.id}
+                    width={86}
+                    height={22}
+                    src={`/assets/delv.svg`}
+                    alt={sections[activeSection]?.title || 'Delv'}
                     style={{
-                      outline: 'none',
-                      position: 'absolute',
-                      left: '96px',
+                      marginTop: '-5px'
                     }}
-                    initial={{
-                      opacity: 0.1,
-                      // x: 5
-                    }}
-                    animate={{
-                      opacity: (activeSection === index) ? 1 : 0,
-                      y: 0,
-                      x:0,
-                      transition: {
-                        duration: 0.6,
-                        ease: 'easeInOut',
-                        // delay
-                      }
-                    }}
-                    exit={{
-                      opacity: 0.1,
-                      // x:5,
-                      transition: {
-                        duration: 0.3,
-                      }
-                    }}
-                  >
-                  
-                  <Image 
-                    src={`/assets/delv-${(section?.id !== 'About') && section?.id.toLowerCase() || 'delv'}.svg`} 
-                    width={24}
-                    height={47} 
-                    alt={section?.id}
-                    />
-                  </motion.div>
-                  )
-                })}
-
-                  
-              </motion.div>
-          </div>
-          <div className="mobile-only">
-            <div className={"mobile_nav_toggle" + ' ' + (mobileMenuOpen ? "mobile_nav_toggle__open" : '')}
-             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              <div className="dash"></div>
-              <div className="dash"></div>
-            </div>
-            <div className={"mobile_nav"} style={{display: mobileMenuOpen ? 'block' : 'none'}}>
-            <div className="delv_logo" onClick={() => setActiveSection(0)}>
-                  <motion.div
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        // background: 'url(/assets/logo.png)',// debug logo size
-                        // backgroundSize: 'contain',
-                        // backgroundRepeat: 'no-repeat',
-                      }}
-
-                      initial={{
-                          opacity: 0.1,
-                          y: 50,
-                      }}
-                      animate={{            
-                        opacity: 1,  
-                        y: 0,
-                        transition:{
-                          duration: 1,
-                          fill: "forwards",
-                          // delay
-                          }
-                      }}
-                      exit={{
-                        opacity: 0,
-                        y: -30,
-                        transition: {
-                            duration: 0.3,
-                            fill: "forwards"
-                        }
-                      }}
-                    >
-
-                      <Image
-                          width={86}
-                          height={19}
-                          src={`/assets/delv.svg`}
-                          alt={sections[activeSection]?.title || 'Delv'}
-                          style={{
-                            marginTop: '-5px'
-                          }}
-                          />
-                    <AnimatePresence mode="wait">
+                  />
+                  {sections.map((section, index) => {
+                    return (
                       <motion.div
-                        key={sections[activeSection]?.id}
+                        key={section?.id}
+                        style={{
+                          outline: 'none',
+                          position: 'absolute',
+                          left: '96px',
+                        }}
                         initial={{
-                          opacity: 0,
+                          opacity: 0.1,
                           // x: 5
                         }}
                         animate={{
-                          opacity: 1,
+                          opacity: (activeSection === index) ? 1 : 0,
                           y: 0,
-                          x:0,
+                          x: 0,
                           transition: {
-                            duration: 0.3,
-                            fill: "forwards",
+                            duration: 0.6,
+                            ease: 'easeInOut',
                             // delay
                           }
                         }}
                         exit={{
-                          opacity: 0,
+                          opacity: 0.1,
                           // x:5,
                           transition: {
                             duration: 0.3,
-                            fill: "forwards"
                           }
                         }}
                       >
 
-                      <Image 
-                        src={`/assets/delv-${(sections[activeSection]?.id !== 'About') && sections[activeSection]?.id.toLowerCase() || 'delv'}.svg`} 
-                        width={24}
-                        height={47} 
-                        alt={sections[activeSection]?.id}
+                        <Image
+                          src={`/assets/delv-${(section?.id !== 'About') && section?.id.toLowerCase() || 'delv'}.svg`}
+                          width={24}
+                          height={47}
+                          alt={section?.id}
                         />
                       </motion.div>
-                    </AnimatePresence>
+                    )
+                  })}
 
-                      
-                  </motion.div>
+
+                </motion.div>
               </div>
               <div className="mobile_nav_projects">
                 {sections.map((section, index) => (
-                  <div className={styles.mobile_nav_item} onClick={() => {setActiveSection(index); setMobileMenuOpen(false)}} key={section.id}>
+                  <div className={styles.mobile_nav_item} onClick={() => { setActiveSection(index); setMobileMenuOpen(false) }} key={section.id}>
                     {section.id}
                   </div>
                 ))}
               </div>
               <div className="mobile_nav_links">
                 {Object.keys(Links).map((group, index) => (
-                    <div key={group}>
-                      <span className="mobile_nav_links_heading">
-                        {group}
-                      </span>
-                      <div className={styles.links}>
-                        {Links[group].map((link, index) => (
-                          <div key={index}>
-                            <a href={link.url}>{link.name}</a>
-                          </div>
-                        ))}
-                      </div>
+                  <div key={group}>
+                    <span className="mobile_nav_links_heading">
+                      {group}
+                    </span>
+                    <div className={styles.links}>
+                      {Links[group].map((link, index) => (
+                        <div key={index}>
+                          <a href={link.url}>{link.name}</a>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-          
-          <motion.div 
+
+          <motion.div
             className={styles.projectNav}
             ref={projectNavRef}
             transition={{ duration: 0.5 }}
-            >
-              <motion.div className={styles.caret} 
+          >
+            <motion.div className={styles.caret}
               initial={{
                 x: -40,
                 opacity: 0
               }}
-              animate={{ 
+              animate={{
                 // y: focusedProject*34, 
-                opacity: activeSection == (sections.length - 1) ? 0:1,
-                y: activeSection*34,
+                opacity: activeSection == (sections.length - 1) ? 0 : 1,
+                y: activeSection * 34,
                 // x: sections[activeSection]?.caretOffset - 180,
                 transition: { duration: 0.3 }
-              }} 
-              transition={{ 
+              }}
+              transition={{
                 duration: 0.3,
-                delay:activeSection?0:0.6
-              }} 
+                delay: activeSection ? 0 : 0.6
+              }}
             />
             <motion.div className="sections"
               animate={{
-                y: isMobile ? -activeSection*34 : 0
+                y: isMobile ? -activeSection * 34 : 0
               }}
             >
               {sections.map((section, index) => (
-                <motion.div 
-                className={styles.projectNav_item}
-                  key={section.id} onClick={() => setActiveSection(index)} 
+                <motion.div
+                  className={styles.projectNav_item}
+                  key={section.id} onClick={() => setActiveSection(index)}
                   // opacity based on closer to focused section
-                  initial={{ 
-                    opacity: Math.max(0.1, 0.5 - (Math.abs(activeSection - index) * (isMobile? 1 : 0.2))),
-                    y: 10*(index+4), 
-                    scale: 0.9, 
+                  initial={{
+                    opacity: Math.max(0.1, 0.5 - (Math.abs(activeSection - index) * (isMobile ? 1 : 0.2))),
+                    y: 10 * (index + 4),
+                    scale: 0.9,
                   }}
-                  animate={{ 
-                    y: 0, 
-                    scale:1, 
-                    opacity: Math.max(0.1, 1 - (Math.abs(activeSection - index) * (isMobile? 1 : 0.2))),
-                    transition:{delay: 0, duration: activeSection?0.3:1}
-                  }} 
+                  animate={{
+                    y: 0,
+                    scale: 1,
+                    opacity: Math.max(0.1, 1 - (Math.abs(activeSection - index) * (isMobile ? 1 : 0.2))),
+                    transition: { delay: 0, duration: activeSection ? 0.3 : 1 }
+                  }}
                   whileHover={{ opacity: 1 }}
                   hidden={section.hidden}
                 >
@@ -629,37 +638,37 @@ export default function Home() {
             <ProjectBackground projectId={sections[activeSection]?.id} key={sections[activeSection]?.id} />
           </AnimatePresence>
           <AnimatePresence mode="wait">
-            <Screen 
-              activeSection={sections[activeSection]} 
+            <Screen
+              activeSection={sections[activeSection]}
               sections={sections}
               setActiveSection={setActiveSection}
               activeSectionPosition={activeSection}
               Links={Links}
-              key={activeSection}  
+              key={activeSection}
             />
           </AnimatePresence>
         </div>
         <div className={styles.sidebar_right + " mobile-hidden"}>
           <motion.div className={styles.nav_footer}>
             {Object.keys(Links).map((group, index) => (
-                <div key={index} onClick={() => setFooterToggles({...footerToggles, [group]: !footerToggles[group]})} className={footerToggles[group]? styles.nav_footer_group_active: styles.nav_footer_group}>
-                  <div>
-                    {Links[group].map((link, index) => (
-                      <div key={index}>
-                        <a href={link.url}>{link.name}</a>
-                      </div>
-                    ))}
-                  </div>
-                  <span className={styles.nav_footer_group_title}>
-                    {group}
-                  </span>
+              <div key={index} onClick={() => setFooterToggles({ ...footerToggles, [group]: !footerToggles[group] })} className={footerToggles[group] ? styles.nav_footer_group_active : styles.nav_footer_group}>
+                <div>
+                  {Links[group].map((link, index) => (
+                    <div key={index}>
+                      <a href={link.url}>{link.name}</a>
+                    </div>
+                  ))}
                 </div>
-              ))}
+                <span className={styles.nav_footer_group_title}>
+                  {group}
+                </span>
+              </div>
+            ))}
           </motion.div>
         </div>
 
       </main>
-      
+
     </>
   )
 }
