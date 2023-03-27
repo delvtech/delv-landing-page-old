@@ -1,6 +1,6 @@
 import styles from '../styles/Screen.module.scss'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 
@@ -54,6 +54,31 @@ let animations = {
 
 
 export function Screen({ activeSection, sections, setActiveSection, activeSectionPosition, Links }) {
+    const [isMobile, setIsMobile] = useState(false)
+    const [isTablet, setIsTablet] = useState(false)
+    const [isDesktop, setIsDesktop] = useState(false)
+
+    useEffect(() => {
+        const handleResize = () => {
+        if (window.innerWidth < 768) {
+            setIsMobile(true)
+            setIsTablet(false)
+            setIsDesktop(false)
+        } else if (window.innerWidth < 1024) {
+            setIsMobile(false)
+            setIsTablet(true)
+            setIsDesktop(false)
+        } else {
+            setIsMobile(false)
+            setIsTablet(false)
+            setIsDesktop(true)
+        }
+        }
+        window.addEventListener('resize', handleResize)
+        handleResize()
+        return () => window.removeEventListener('resize', handleResize)
+    }, [isMobile, isTablet, isDesktop])
+
     if (!activeSection) return null
     if (activeSection.layout === 'main') {
         return (
@@ -69,7 +94,15 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                         transit={{duration: 1 }}
                         >
                             <AnimatePresence mode="wait">
-                                <h1 className='main-intro' style={{marginBottom: '1em', marginTop:"-30%"}}> {activeSection?.title} </h1>
+                                <h1 className='main-intro' 
+                                    style={{
+                                        marginBottom: '1em', 
+                                        marginTop: isMobile ? "20%" : "-30%",
+                                        marginBottom: isMobile ? "100px" : "0",
+                                        fontSize: isMobile ? '39px' : '3rem',
+                                    }}> 
+                                    {activeSection?.title} 
+                                </h1>
                                 <p className='font-sec'>
                                     {/* <Balancer> */}
                                         {activeSection?.description}
@@ -91,14 +124,16 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     {...animations.normal()}
                     transition={{duration: 1}}
                     >
-                    <h1 className='main-intro' style={{marginTop:"30%"}}>
-                        {activeSection?.title}
-                    </h1>
-                    <p className='font-sec prod-descr'>
-                        <Balancer>
-                            {activeSection?.description}
-                        </Balancer>
-                    </p>
+                    <AnimatePresence mode="wait">
+                        <h1 className='main-intro' style={{marginTop:"30%"}}>
+                            {activeSection?.title}
+                        </h1>
+                        <p className='font-sec prod-descr'>
+                            <Balancer>
+                                {activeSection?.description}
+                            </Balancer>
+                        </p>
+                    </AnimatePresence>
                     <p className='font-sec prod-descr' style={{marginTop:"10%", fontSize: "13px", lineHeight: "19px"}}>
                         {Object.keys(Links).map((group, index) => (
                             <div key={group} style={{marginTop:"30px"}}>
@@ -160,14 +195,19 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     {...animations.normal()}
                     transition={{duration: 1}}
                     >
-                    <h1 style={{marginTop:"-10%"}}>
-                        {activeSection?.title}
-                    </h1>
-                    <p className='font-sec prod-descr'>
-                        <Balancer>
-                            {activeSection?.description}
-                        </Balancer>
-                    </p>
+                    <AnimatePresence mode="wait">
+                        {!isMobile && 
+                            <h1 style={{marginTop:"-10%"}}>
+                                {activeSection?.title}
+                            </h1>
+                        }
+                        
+                        <p className='font-sec prod-descr'>
+                            <Balancer>
+                                {activeSection?.description}
+                            </Balancer>
+                        </p>
+                    </AnimatePresence>
                     {activeSection?.link && (
                         <a href={activeSection?.link} target="_blank" rel="noopener noreferrer" className={styles.link}>
                             <Image src="/ext.svg" width={20} height={20} alt="External Link" />
@@ -177,19 +217,33 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                 <div className={styles.project_logo}>
                     <motion.div
                         {...animations.logo()}
-                        style={{width: `${activeSection.logo?.w}px`, height: `${activeSection.logo?.h}px`, position: 'relative', marginTop: '30px', minWidth: '600px', minHeight:'300px', maxWidth: '100%', maxHeight: '600px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', position:'relative', zIndex:'-1'}}
+                        style={{
+                            // width: `${activeSection.logo?.w}px`,
+                            // height: `${activeSection.logo?.h}px`,
+                            position: 'relative',
+                            marginTop: isMobile? '0' : '30px',
+                            minWidth: '600px',
+                            minHeight:isMobile? '0':'300px',
+                            maxWidth: (activeSection.id == 'Echo' && isMobile) ? '206px' : '100%',
+                            maxHeight: '600px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            position:'relative',
+                            zIndex:'-1'
+                        }}
                         className="project_logo"
                         transition={{ duration: 1, fill: "forwards"}}
                     >
-                        {activeSection?.logo && (<Image
-                            width={activeSection.logo.w}
-                            height={activeSection.logo.h}
-                            src={`/assets/${activeSection?.id.toLowerCase()}.svg`}
-                            alt={activeSection?.id}
-                            style= {{
-                                marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '50px' : '0px',
-                            }}
-                        />)}    
+                        <AnimatePresence mode='wait'>
+                            {activeSection?.logo && (<img
+                                src={`/assets/${activeSection?.id.toLowerCase()}.svg`}
+                                alt={activeSection?.id}
+                                style= {{
+                                    marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '100px' : '0px',
+                                }}
+                            />)}    
+                        </AnimatePresence>
                     </motion.div>
                 </div>
             </motion.div>

@@ -161,7 +161,7 @@ const sections: Section[] = [
     id: 'Echo',
     caretOffset: 34,
     title: 'Browser-Layer P2P',
-    description: 'Echo is a new P2P protocol that focuses on the browser-layer. It enables any visitor of a web3 application to peer/host infrastructure needed to power the application. Echo is a natural adaptor for Council, allowing DAOs to deploy frontends and data services for their products.\nIt enables a world of truly decentralized protocols and DAOs.',
+    description: 'Echo is a new P2P protocol that focuses on the browser-layer. It enables any visitor of a web3 application to peer/host infrastructure needed to power the application. Echo is a natural adaptor for Council, allowing DAOs to deploy frontends and data services for their products.\nIt enables a world of truly decentralized protocols and DAOs.',
     backgroundClass: 'bg-black',
     logo: {
       w: 286,

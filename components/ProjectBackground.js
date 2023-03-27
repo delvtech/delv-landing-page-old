@@ -95,6 +95,7 @@ export function ProjectBackground({ projectId }) {
                     zIndex: '0',
                     background: '#3E6BBD',
                     display: 'flex',
+                    zIndex: '-1',
                 }}
                 initial={{ opacity: 0, }}
                 animate={{ opacity: 1, }}
@@ -119,6 +120,7 @@ export function ProjectBackground({ projectId }) {
                         top: '0%',
                         opacity: 0.5,
                         mixBlendMode: 'multiply',
+                        zIndex: -1,
                     }}
                     animate={{
                         scale: [1, 0.9, 1, 0.95, 1.02, 0.97, 1],
@@ -142,7 +144,7 @@ export function ProjectBackground({ projectId }) {
                         position: 'absolute',
                         zIndex: '-1',
                         // marginTop:'-35%',
-                        inset: '14% 23%',
+                        inset: isMobile ? '55% 3% 0%' : '14% 23%',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',

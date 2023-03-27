@@ -168,20 +168,20 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    // padding: 0 20px;
-    margin-top: 50px;
+    padding: 0 10px;
+    margin-top: 0px;
   }
   .project_logo {
     min-width: 0 !important;
     min-height: 200px;
   }
-  .section_Echo {
-    .project_logo img{
-      max-width: 206px;
-    }
-  }
+  // .section_Echo {
+  //   .project_logo img{
+  //     max-width: 206px;
+  //   }
+  // }
   .project_logo {
-    margin-bottom: 20%;
+    // margin-bottom: 20%;
   }
   .sections-scroll {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.33%, #FFFFFF 44.58%, rgba(255, 255, 255, 0) 92.19%);
@@ -201,31 +201,31 @@ h1, h2, h3, h4, h5, h6 {
     flex: 280px;
   }
   .main-intro {
-    display: none;
+    // display: none;
   }
-  .section_Delv {
-    .main-intro {
-      margin-top: 15% !important;
-      margin-bottom: 100px !important;
-      display: block;
-      font-weight: 500;
-      font-size: 39px;
-      line-height: 48px;
-    }
-  }
+  // .section_Delv {
+  //   .main-intro {
+  //     margin-top: 15% !important;
+  //     margin-bottom: 100px !important;
+  //     display: block;
+  //     font-weight: 500;
+  //     font-size: 39px;
+  //     line-height: 48px;
+  //   }
+  // }
   .project_logo {
     img {
-      width: 300px;
-      margin-top: 50px !important;
+      width: 100%;
+      // margin-top: 50px !important;
     }
   }
   .section_Element {
-    .project_logo {
-      div {
-        inset: -5% !important;
-        margin-top: -13% !important;
-      }
-    }
+    // .project_logo {
+    //   div {
+    //     inset: -5% !important;
+    //     margin-top: -13% !important;
+    //   }
+    // }
   }
   .mobile_nav_links {
     display: flex;
