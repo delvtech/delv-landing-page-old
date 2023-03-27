@@ -25,7 +25,7 @@ type Section = {
 const useScrollDirection = (activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
-  const isInsideSections = (element) => {
+  const isInsideSections = (element: Element | null): boolean => {
     while (element) {
       if (element.classList && element.classList.contains('sections')) {
         return true;
@@ -37,10 +37,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
-      if (isScrolling || isInsideSections(event.target)) {
-        return;
-      }
-      if (isScrolling) {
+      if (isScrolling || isInsideSections(event.target as HTMLElement)) {
         return;
       }
       if (event.deltaY < 0) {
@@ -59,7 +56,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
     };
 
     const handleTouchMove = (event: TouchEvent) => {
-      if (!touchStartY || isInsideSections(event.target)) return;
+      if (!touchStartY || isInsideSections(event.target as HTMLElement)) return;
       if (!touchStartY) return;
 
       const touchEndY = event.touches[0].clientY;
