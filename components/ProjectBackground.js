@@ -2,25 +2,25 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useState } from 'react'
 import Image from 'next/image'
 
-export function ProjectBackground({ projectId }) {  
+export function ProjectBackground({ projectId }) {
     // map ids to return divs
     const projectBackgrounds = {
         'Delv': (
-            <motion.div 
-                style = {{
-                    position: 'absolute', 
-                    top: 'bottom', 
-                    left: '0', 
-                    width: '100%', 
-                    height: '100%', 
+            <motion.div
+                style={{
+                    position: 'absolute',
+                    top: 'bottom',
+                    left: '0',
+                    width: '100%',
+                    height: '100%',
                     zIndex: '0',
                     display: 'flex',
                 }}
-                initial={{ opacity: 0, y: 50, scaleY:0.5, transformOrigin: 'bottom' }}
-                animate={{ opacity: 1, y: 0, scaleY:1, transformOrigin: 'bottom' }}
-                transition={{ duration: 1, fill: "forwards"}}
+                initial={{ opacity: 0, y: 50, scaleY: 0.5, transformOrigin: 'bottom' }}
+                animate={{ opacity: 1, y: 0, scaleY: 1, transformOrigin: 'bottom' }}
+                transition={{ duration: 1, fill: "forwards" }}
             >
-                <motion.div 
+                <motion.div
                     style={{
                         background: "radial-gradient(100% 100% at 50% 100%, #02FE67 0%, rgba(24, 251, 254, 0.90) 85.28%)",
                         filter: "blur(112px)",
@@ -45,12 +45,12 @@ export function ProjectBackground({ projectId }) {
                         repeatDelay: 1
                     }}
                     exit={{
-                        opacity: 0, 
+                        opacity: 0,
                         y: 10,
-                        transition: { duration: 0.3, fill: "forwards"}
+                        transition: { duration: 0.3, fill: "forwards" }
                     }}
 
-                    >
+                >
 
                 </motion.div>
 
@@ -59,26 +59,26 @@ export function ProjectBackground({ projectId }) {
             </motion.div>
         ),
         'Element': (
-            <motion.div 
-                style = {{
-                    position: 'absolute', 
-                    top: 'bottom', 
-                    left: '0', 
-                    width: '100%', 
-                    height: '100%', 
+            <motion.div
+                style={{
+                    position: 'absolute',
+                    top: 'bottom',
+                    left: '0',
+                    width: '100%',
+                    height: '100%',
                     zIndex: '0',
                     background: '#3E6BBD',
                     display: 'flex',
                 }}
                 initial={{ opacity: 0, }}
                 animate={{ opacity: 1, }}
-                transition={{ duration: 1, fill: "forwards", delay: 0.2}}
+                transition={{ duration: 1, fill: "forwards", delay: 0.2 }}
                 exit={{
-                    opacity: 0, 
-                    transition: { duration: 0.3, fill: "forwards"}
+                    opacity: 0,
+                    transition: { duration: 0.3, fill: "forwards" }
                 }}
             >
-                <motion.div 
+                <motion.div
                     style={{
                         background: "#D101F3",
                         filter: "blur(112px)",
@@ -106,17 +106,41 @@ export function ProjectBackground({ projectId }) {
                         loop: Infinity,
                         repeatDelay: 1
                     }}
-                    >
+                >
 
                 </motion.div>
 
 
+                <motion.div
+                    style={{
+                        position: 'absolute',
+                        zIndex: '-1',
+                        // marginTop:'-35%',
+                        inset: '14% 23%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        background: 'url(/assets/element-bg.svg)',
+                        backgroundSize: 'contain',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        aspectRatio: '761/586',
+                        transform: "translateZ(0)"
+                    }}
+                    animate={{
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                            duration: 1,
+                        }
+                    }}>
+                </motion.div>
 
             </motion.div>
         ),
         'Echo': (
             <motion.div
-                style = {{
+                style={{
                     position: 'absolute',
                     top: 'bottom',
                     left: '0',
@@ -126,12 +150,12 @@ export function ProjectBackground({ projectId }) {
                     background: '#3E6BBD',
                     display: 'flex',
                 }}
-                initial={{ opacity: 0, y:20, scale: 0.97 }}
-                animate={{ opacity: 1, y:0, scale: 1}}
-                transition={{ duration: 2, fill: "forwards", delay: 0.2}}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, fill: "forwards", delay: 0.2 }}
                 exit={{
                     opacity: 0,
-                    transition: { duration: 0.3, fill: "forwards"}
+                    transition: { duration: 0.3, fill: "forwards" }
                 }}
             >
                 <Image src="/bg/echo.jpg" fill cover />
@@ -139,7 +163,7 @@ export function ProjectBackground({ projectId }) {
         ),
         'Elfiverse': (
             <motion.div
-                style = {{
+                style={{
                     position: 'absolute',
                     top: 'bottom',
                     left: '0',
@@ -149,16 +173,16 @@ export function ProjectBackground({ projectId }) {
                     background: '#3E6BBD',
                     display: 'flex',
                 }}
-                initial={{ opacity: 0, y: -10, scale: 1.1}}
-                animate={{ opacity: 1, y: 0, scale:1}}
-                transition={{ duration: 2, fill: "forwards", delay: 0.2}}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, fill: "forwards", delay: 0.2 }}
                 exit={{
                     opacity: 0,
-                    transition: { duration: 0.3, fill: "forwards"}
+                    transition: { duration: 0.3, fill: "forwards" }
                 }}
             >
-                <Image src="/bg/elfiverse.jpg" alt="Elfiverse" fill style={{objectFit:"cover"}} />
-                <motion.div 
+                <Image src="/bg/elfiverse.jpg" alt="Elfiverse" fill style={{ objectFit: "cover" }} />
+                <motion.div
                     style={{
                         background: "radial-gradient(80.95% 139.13% at 81.02% 48.44%, #FF6B6B 0%, #FEEC96 100%)",
                         filter: "blur(112px)",
@@ -183,18 +207,18 @@ export function ProjectBackground({ projectId }) {
                         repeatDelay: 1
                     }}
                     exit={{
-                        opacity: 0, 
+                        opacity: 0,
                         y: 10,
-                        transition: { duration: 0.3, fill: "forwards"}
+                        transition: { duration: 0.3, fill: "forwards" }
                     }}
 
-                    >
+                >
                 </motion.div>
             </motion.div>
         ),
         'Hyperdrive': (
             <motion.div
-                style = {{
+                style={{
                     position: 'absolute',
                     top: 'bottom',
                     left: '0',
@@ -204,20 +228,20 @@ export function ProjectBackground({ projectId }) {
                     background: '#3E6BBD',
                     display: 'flex',
                 }}
-                initial={{ opacity: 0, y: -10, scale: 1.1}}
-                animate={{ opacity: 1, y: 0, scale:1}}
-                transition={{ duration: 2, fill: "forwards", delay: 0.2}}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, fill: "forwards", delay: 0.2 }}
                 exit={{
                     opacity: 0,
-                    transition: { duration: 0.3, fill: "forwards"}
+                    transition: { duration: 0.3, fill: "forwards" }
                 }}
             >
-                <Image src="/bg/hyperdrive.jpg" alt="Hyperdrive" fill style={{objectFit:"cover"}} />
+                <Image src="/bg/hyperdrive.jpg" alt="Hyperdrive" fill style={{ objectFit: "cover" }} />
             </motion.div>
         ),
         'Agent_0': (
             <motion.div
-                style = {{
+                style={{
                     position: 'absolute',
                     top: 'bottom',
                     left: '0',
@@ -227,20 +251,20 @@ export function ProjectBackground({ projectId }) {
                     background: '#3E6BBD',
                     display: 'flex',
                 }}
-                initial={{ opacity: 0, y: -10, scale: 1.1}}
-                animate={{ opacity: 1, y: 0, scale:1}}
-                transition={{ duration: 2, fill: "forwards", delay: 0.2}}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, fill: "forwards", delay: 0.2 }}
                 exit={{
                     opacity: 0,
-                    transition: { duration: 0.3, fill: "forwards"}
+                    transition: { duration: 0.3, fill: "forwards" }
                 }}
             >
-                <Image src="/bg/agent_0.jpg" alt="Agent_0" fill style={{objectFit:"cover"}} />
+                <Image src="/bg/agent_0.jpg" alt="Agent_0" fill style={{ objectFit: "cover" }} />
             </motion.div>
         ),
         'Council': (
             <motion.div
-                style = {{
+                style={{
                     position: 'absolute',
                     top: 'bottom',
                     left: '0',
@@ -250,23 +274,23 @@ export function ProjectBackground({ projectId }) {
                     background: '#3E6BBD',
                     display: 'flex',
                 }}
-                initial={{ opacity: 0, y: -10, scale: 1.1}}
-                animate={{ opacity: 1, y: 0, scale:1}}
-                transition={{ duration: 2, fill: "forwards", delay: 0.2}}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, fill: "forwards", delay: 0.2 }}
                 exit={{
                     opacity: 0,
-                    transition: { duration: 0.3, fill: "forwards"}
+                    transition: { duration: 0.3, fill: "forwards" }
                 }}
             >
-                <Image src="/bg/council.jpg" alt="Council" fill style={{objectFit:"cover"}} />
+                <Image src="/bg/council.jpg" alt="Council" fill style={{ objectFit: "cover" }} />
             </motion.div>
         ),
-            
+
     }
 
     return (
-        
-        <motion.div 
+
+        <motion.div
             style={{
                 position: 'fixed',
                 top: '0',

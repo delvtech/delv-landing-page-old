@@ -13,11 +13,6 @@
     letter-spacing: 0.21em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: 1s ease-in opacity;
-    &:hover{
-        opacity: 1 !important;
-        
-    }
     // border: 1px solid red;
 }
 .caret {
@@ -169,11 +164,11 @@
             display: none;
         }
         &_item {
-            opacity: 1 !important;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 100px, #FFFFFF 140px, rgba(255, 255, 255, 0) 180px) fixed center center no-repeat;
-            background-size: cover;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            // opacity: 1 !important;
+            // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 100px, #FFFFFF 140px, rgba(255, 255, 255, 0) 180px) fixed center center no-repeat;
+            // background-size: cover;
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;
         }
     }
 

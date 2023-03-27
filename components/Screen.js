@@ -8,14 +8,15 @@ let animations = {
     normal: (delay = 0) => ({
         initial: {
             opacity: 0,
-            y: 100,
+            y: 30,
         },
         animate: {
-            opacity: 1,
-            y: 0,
+            opacity: [0, 0.8, 1],
+            y: [30, 0, 0],
             transition: {
-                duration: 1,
+                duration: 2,
                 delay,
+                ease: 'easeInOut'
             }
         },
         exit: {
@@ -29,11 +30,11 @@ let animations = {
     logo: (delay = 0) => ({
         initial: {
             opacity: 0,
-            y: 100,
+            y: 30,
         },
         animate:{
             opacity: [0, 0.8, 1],
-            y: [100, 0, 0],
+            y: [30, 0, 0],
             transition: {
                 duration: 2,
                 delay,
@@ -188,12 +189,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                             style= {{
                                 marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '50px' : '0px',
                             }}
-                        />)}
-                        {activeSection?.id == "Element" && (
-                            <div style={{ position: 'absolute', zIndex: '-1', marginTop:'-35%', inset:'-24% -24%', display: 'flex', justifyContent: 'center', alignItems: 'center', background:'url(/assets/element-bg.svg)', backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio:'761/586', tranform:"translateZ(0)"}}>
-                            </div>
-                        )}
-                                
+                        />)}    
                     </motion.div>
                 </div>
             </motion.div>

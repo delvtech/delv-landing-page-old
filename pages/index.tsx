@@ -294,31 +294,56 @@ export default function Home() {
   }, {}))
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const projectNavRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const [isMobile, setIsMobile] = useState(false)
+  const [isTablet, setIsTablet] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
-    if (projectNavRef.current) {
-      const sectionHeight = 34; // The height of each section in the project navigation
-      const targetScrollTop = activeSection * sectionHeight;
-      const duration = 500; // The duration of the animation in milliseconds
-  
-      const startTime = performance.now();
-      const startScrollTop = projectNavRef.current.scrollTop;
-  
-      const animateScroll = (currentTime: number) => {  
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-  
-        projectNavRef.current.scrollTop = startScrollTop + (targetScrollTop - startScrollTop) * progress;
-  
-        if (progress < 1) {
-          requestAnimationFrame(animateScroll);
-        }
-      };
-  
-      requestAnimationFrame(animateScroll);
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsMobile(true)
+        setIsTablet(false)
+        setIsDesktop(false)
+      } else if (window.innerWidth < 1024) {
+        setIsMobile(false)
+        setIsTablet(true)
+        setIsDesktop(false)
+      } else {
+        setIsMobile(false)
+        setIsTablet(false)
+        setIsDesktop(true)
+      }
     }
-  }, [activeSection]);
+    window.addEventListener('resize', handleResize)
+    handleResize()
+    return () => window.removeEventListener('resize', handleResize)
+  }, [ isMobile, isTablet, isDesktop ])
+
+  const projectNavRef = useRef() as MutableRefObject<HTMLDivElement>;
+
+  // useEffect(() => {
+  //   if (projectNavRef.current) {
+  //     const sectionHeight = 34; // The height of each section in the project navigation
+  //     const targetScrollTop = activeSection * sectionHeight;
+  //     const duration = 500; // The duration of the animation in milliseconds
+  
+  //     const startTime = performance.now();
+  //     const startScrollTop = projectNavRef.current.scrollTop;
+  
+  //     const animateScroll = (currentTime: number) => {  
+  //       const elapsed = currentTime - startTime;
+  //       const progress = Math.min(elapsed / duration, 1);
+  
+  //       projectNavRef.current.scrollTop = startScrollTop + (targetScrollTop - startScrollTop) * progress;
+  
+  //       if (progress < 1) {
+  //         requestAnimationFrame(animateScroll);
+  //       }
+  //     };
+  
+  //     requestAnimationFrame(animateScroll);
+  //   }
+  // }, [activeSection]);
 
   useScrollDirection(activeSection,setActiveSection, isScrolling, setIsScrolling)
   
@@ -338,82 +363,87 @@ export default function Home() {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
+                    position: 'relative',
                     justifyContent: 'flex-start',
                     // background: 'url(/assets/logo.png)',// debug logo size
-                    // backgroundSize: 'contain',
+                    // backgroundSize: '120px 48px',
                     // backgroundRepeat: 'no-repeat',
+                    // backgroundPositionY: '-3px',
+                    // width: '120px',
+                    // height: '48px',
                   }}
 
                   initial={{
-                      opacity: 0.1,
-                      y: 50,
-                  }}
-                  animate={{            
-                    opacity: 1,  
-                    y: 0,
-                    transition:{
-                      duration: 1,
-                      fill: "forwards",
-                      // delay
-                      }
-                  }}
-                  exit={{
+                    opacity: 0,
+                    y: 30,
+                }}
+                animate={{
+                    opacity: [0, 0.8, 1],
+                    y: [30, 0, 0],
+                    transition: {
+                        duration: 2,
+                        ease: 'easeInOut'
+                    }
+                }}
+                exit={{
                     opacity: 0,
                     y: -30,
                     transition: {
                         duration: 0.3,
-                        fill: "forwards"
+                        delay: 0
                     }
-                  }}
+                }}
                 >
 
                   <Image
                       width={86}
-                      height={19}
+                      height={22}
                       src={`/assets/delv.svg`}
                       alt={sections[activeSection]?.title || 'Delv'}
                       style={{
                         marginTop: '-5px'
                       }}
                       />
-                <AnimatePresence mode="wait">
+                {sections.map((section, index) => {
+                  return (
                   <motion.div
-                    key={sections[activeSection]?.id}
+                    key={section?.id}
+                    style={{
+                      outline: 'none',
+                      position: 'absolute',
+                      left: '96px',
+                    }}
                     initial={{
-                      opacity: 0,
+                      opacity: 0.1,
                       // x: 5
                     }}
                     animate={{
-                      opacity: 1,
+                      opacity: (activeSection === index) ? 1 : 0,
                       y: 0,
                       x:0,
                       transition: {
                         duration: 0.3,
-                        fill: "forwards",
                         // delay
                       }
                     }}
                     exit={{
-                      opacity: 0,
+                      opacity: 0.1,
                       // x:5,
                       transition: {
                         duration: 0.3,
-                        fill: "forwards"
                       }
                     }}
                   >
-
+                  
                   <Image 
-                    src={`/assets/delv-${(sections[activeSection]?.id !== 'About') && sections[activeSection]?.id.toLowerCase() || 'delv'}.svg`} 
-                    style={{
-                      marginLeft: '5px',
-                    }}
+                    src={`/assets/delv-${(section?.id !== 'About') && section?.id.toLowerCase() || 'delv'}.svg`} 
                     width={24}
                     height={47} 
-                    alt={sections[activeSection]?.id}
+                    alt={section?.id}
                     />
                   </motion.div>
-                </AnimatePresence>
+                  )
+                })}
 
                   
               </motion.div>
@@ -497,9 +527,6 @@ export default function Home() {
 
                       <Image 
                         src={`/assets/delv-${(sections[activeSection]?.id !== 'About') && sections[activeSection]?.id.toLowerCase() || 'delv'}.svg`} 
-                        style={{
-                          marginLeft: '5px',
-                        }}
                         width={24}
                         height={47} 
                         alt={sections[activeSection]?.id}
@@ -551,36 +578,43 @@ export default function Home() {
                 opacity: activeSection == (sections.length - 1) ? 0:1,
                 y: activeSection*34,
                 // x: sections[activeSection]?.caretOffset - 180,
-                transition: { duration: 1 }
+                transition: { duration: 0.3 }
               }} 
               transition={{ 
-                duration: 1,
+                duration: 0.1,
                 delay:activeSection?0:0.6
               }} 
             />
-            {sections.map((section, index) => (
-              <motion.div 
-              className={styles.projectNav_item}
-                key={section.id} onClick={() => setActiveSection(index)} 
-                // opacity based on closer to focused section
-                initial={{ 
-                  opacity: 0, 
-                  y: 10*(index+4), 
-                  scale: 0.9, 
-                }}
-                animate={{ 
-                  y: 0, 
-                  scale:1, 
-                  opacity: activeSection == (sections.length - 1)? 0.7: Math.max(0.1, 1 - (Math.abs(activeSection - index) * 0.2)),
-                  transition:{delay: 0, duration: 1}
-                }} 
-                hidden={section.hidden}
-              >
-                <span>
-                  {section.id}
-                </span>
-              </motion.div>
-            ))}
+            <motion.div className="sections"
+              animate={{
+                y: isMobile ? -activeSection*34 : 0
+              }}
+            >
+              {sections.map((section, index) => (
+                <motion.div 
+                className={styles.projectNav_item}
+                  key={section.id} onClick={() => setActiveSection(index)} 
+                  // opacity based on closer to focused section
+                  initial={{ 
+                    opacity: 0.7, 
+                    y: 10*(index+4), 
+                    scale: 0.9, 
+                  }}
+                  animate={{ 
+                    y: 0, 
+                    scale:1, 
+                    opacity: Math.max(0.1, 1 - (Math.abs(activeSection - index) * (isMobile? 1 : 0.2))),
+                    transition:{delay: 0, duration: 0.3}
+                  }} 
+                  whileHover={{ opacity: 1 }}
+                  hidden={section.hidden}
+                >
+                  <span>
+                    {section.id}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
           <motion.div className={styles.nav_footer + " mobile-hidden"}>
             <a href="#" onClick={() => setActiveSection(7)}>
