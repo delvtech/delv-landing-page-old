@@ -244,3 +244,11 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
   }
 }
+
+
+@media screen and (max-height: 700px) {
+  .prod-descr {
+      font-size: 12px !important;
+      line-height: 1.25;
+  }
+}

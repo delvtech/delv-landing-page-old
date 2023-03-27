@@ -36,3 +36,15 @@
        }
     }
 }
+
+@media screen and (max-height: 700px) {
+    .screen {
+        gap: 40px;
+    }
+    .project_logo {
+        img {
+            margin-top: 0 !important;
+        }
+    }
+}
+
