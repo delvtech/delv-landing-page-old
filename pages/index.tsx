@@ -422,7 +422,8 @@ export default function Home() {
                       y: 0,
                       x:0,
                       transition: {
-                        duration: 0.3,
+                        duration: 0.6,
+                        ease: 'easeInOut',
                         // delay
                       }
                     }}
@@ -581,7 +582,7 @@ export default function Home() {
                 transition: { duration: 0.3 }
               }} 
               transition={{ 
-                duration: 0.1,
+                duration: 0.3,
                 delay:activeSection?0:0.6
               }} 
             />
@@ -596,7 +597,7 @@ export default function Home() {
                   key={section.id} onClick={() => setActiveSection(index)} 
                   // opacity based on closer to focused section
                   initial={{ 
-                    opacity: 0.7, 
+                    opacity: Math.max(0.1, 0.5 - (Math.abs(activeSection - index) * (isMobile? 1 : 0.2))),
                     y: 10*(index+4), 
                     scale: 0.9, 
                   }}
@@ -604,7 +605,7 @@ export default function Home() {
                     y: 0, 
                     scale:1, 
                     opacity: Math.max(0.1, 1 - (Math.abs(activeSection - index) * (isMobile? 1 : 0.2))),
-                    transition:{delay: 0, duration: 0.3}
+                    transition:{delay: 0, duration: activeSection?0.3:1}
                   }} 
                   whileHover={{ opacity: 1 }}
                   hidden={section.hidden}
