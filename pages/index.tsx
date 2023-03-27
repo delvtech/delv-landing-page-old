@@ -152,6 +152,7 @@ const sections: Section[] = [
     title: 'A new way to trade rates',
     description: 'Hyperdrive is the next research leap from the Delv Finance team on variable and fixed rate primitives. No preset expiration dates, no fragmented liquidity, and no LP rollovers, aka everlasting liquidity.',
     backgroundClass: 'bg-black',
+    link: 'https://hyperdrive.element.fi/',
     logo: {
       w: 400,
       h: 174,
