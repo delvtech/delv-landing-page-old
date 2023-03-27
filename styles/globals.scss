@@ -200,6 +200,9 @@ h1, h2, h3, h4, h5, h6 {
     height: 115px;
     flex: 280px;
   }
+  .font-sec {
+    font-size: 26px;
+  }
   .main-intro {
     // display: none;
   }
@@ -246,9 +249,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 720px) {
+  .prod-descr {
+      font-size: 14px !important;
+      line-height: 1.4;
+  }
+}
+
+@media screen and (max-height: 600px) {
   .prod-descr {
       font-size: 12px !important;
       line-height: 1.25;
   }
 }
+

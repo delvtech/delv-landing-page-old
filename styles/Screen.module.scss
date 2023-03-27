@@ -37,7 +37,19 @@
     }
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 730px) {
+    .screen {
+        gap: 70px;
+    }
+    .project_logo {
+        img {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+
+@media screen and (max-height: 600px) {
     .screen {
         gap: 40px;
     }
@@ -47,4 +59,5 @@
         }
     }
 }
+
 
