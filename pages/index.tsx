@@ -106,7 +106,7 @@ const sections: Section[] = [
     id: 'Delv',
     layout: 'main',
     caretOffset: 31,
-    title: 'The Factory of DeFi',
+    title: 'The Factory for DeFi',
     description: 'Delv is building the full stack of decentralized finance, from core infrastructure to structured products.',
     backgroundClass: 'bg-white',
   },

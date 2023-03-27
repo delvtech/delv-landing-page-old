@@ -146,11 +146,17 @@
     .caret {
         display: none;
     }
+    .content {
+        padding-top: 140px;
+    }
     .projectNav {
         width: 100%;
         text-align: center;
         max-height: 100px;
         overflow-y:scroll;
+        position: fixed;
+        left: 0;
+        right: 0;
         -webkit-overflow-scrolling: touch;
         // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.33%, #FFFFFF 44.58%, rgba(255, 255, 255, 0) 92.19%);
         // -webkit-background-clip: text;
