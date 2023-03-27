@@ -25,8 +25,21 @@ type Section = {
 const useScrollDirection = (activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
+  const isInsideSections = (element) => {
+    while (element) {
+      if (element.classList && element.classList.contains('sections')) {
+        return true;
+      }
+      element = element.parentElement;
+    }
+    return false;
+  };
+
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
+      if (isScrolling || isInsideSections(event.target)) {
+        return;
+      }
       if (isScrolling) {
         return;
       }
@@ -46,6 +59,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
     };
 
     const handleTouchMove = (event: TouchEvent) => {
+      if (!touchStartY || isInsideSections(event.target)) return;
       if (!touchStartY) return;
 
       const touchEndY = event.touches[0].clientY;
@@ -322,29 +336,29 @@ export default function Home() {
 
   const projectNavRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-  // useEffect(() => {
-  //   if (projectNavRef.current) {
-  //     const sectionHeight = 34; // The height of each section in the project navigation
-  //     const targetScrollTop = activeSection * sectionHeight;
-  //     const duration = 500; // The duration of the animation in milliseconds
+  useEffect(() => {
+    if (projectNavRef.current) {
+      const sectionHeight = 34; // The height of each section in the project navigation
+      const targetScrollTop = activeSection * sectionHeight;
+      const duration = 500; // The duration of the animation in milliseconds
 
-  //     const startTime = performance.now();
-  //     const startScrollTop = projectNavRef.current.scrollTop;
+      const startTime = performance.now();
+      const startScrollTop = projectNavRef.current.scrollTop;
 
-  //     const animateScroll = (currentTime: number) => {  
-  //       const elapsed = currentTime - startTime;
-  //       const progress = Math.min(elapsed / duration, 1);
+      const animateScroll = (currentTime: number) => {  
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
 
-  //       projectNavRef.current.scrollTop = startScrollTop + (targetScrollTop - startScrollTop) * progress;
+        projectNavRef.current.scrollTop = startScrollTop + (targetScrollTop - startScrollTop) * progress;
 
-  //       if (progress < 1) {
-  //         requestAnimationFrame(animateScroll);
-  //       }
-  //     };
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
 
-  //     requestAnimationFrame(animateScroll);
-  //   }
-  // }, [activeSection]);
+      requestAnimationFrame(animateScroll);
+    }
+  }, [activeSection]);
 
   useScrollDirection(activeSection, setActiveSection, isScrolling, setIsScrolling)
 
@@ -598,7 +612,7 @@ export default function Home() {
             />
             <motion.div className="sections"
               animate={{
-                y: isMobile ? -activeSection * 34 : 0
+                // y: isMobile ? -activeSection * 34 : 0
               }}
             >
               {sections.map((section, index) => (

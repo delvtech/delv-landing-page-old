@@ -98,7 +98,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                                     style={{
                                         marginBottom: '1em', 
                                         marginTop: isMobile ? "20%" : "-30%",
-                                        marginBottom: isMobile ? "100px" : "0",
+                                        marginBottom: isMobile ? "100px" : "7%",
                                         fontSize: isMobile ? '39px' : '3rem',
                                     }}> 
                                     {activeSection?.title} 
