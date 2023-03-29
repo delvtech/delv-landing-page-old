@@ -200,13 +200,17 @@ h1, h2, h3, h4, h5, h6 {
     height: 115px;
     flex: 280px;
   }
-  .font-sec {
-    // font-size: 26px;
+  .sections {
+    overflow: hidden;
+  }
+  .font-sec:not(.prod-descr) {
+    font-size: 26px;
+    line-height: 1.25;
   }
   .main-intro {
     // display: none;
   }
-  // .section_Delv {
+  .section_Delv {
   //   .main-intro {
   //     margin-top: 15% !important;
   //     margin-bottom: 100px !important;
@@ -215,7 +219,7 @@ h1, h2, h3, h4, h5, h6 {
   //     font-size: 39px;
   //     line-height: 48px;
   //   }
-  // }
+  }
   .project_logo {
     img {
       width: 100%;

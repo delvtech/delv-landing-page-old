@@ -212,7 +212,7 @@ export function ProjectBackground({ projectId }) {
                 }}
             >
                 <Image src="/bg/elfiverse.jpg" alt="Elfiverse" fill style={{ objectFit: "cover" }} />
-                <motion.div
+                {/* <motion.div
                     style={{
                         background: "radial-gradient(80.95% 139.13% at 81.02% 48.44%, #FF6B6B 0%, #FEEC96 100%)",
                         filter: "blur(112px)",
@@ -243,7 +243,7 @@ export function ProjectBackground({ projectId }) {
                     }}
 
                 >
-                </motion.div>
+                </motion.div> */}
             </motion.div>
         ),
         'Hyperdrive': (

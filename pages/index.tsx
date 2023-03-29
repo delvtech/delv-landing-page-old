@@ -27,7 +27,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
 
   const isInsideSections = (element: Element | null): boolean => {
     while (element) {
-      if (element.classList && element.classList.contains('sections')) {
+      if (element.classList && element.classList.contains('sections') || element.classList.contains('mobile_nav')) {
         return true;
       }
       element = element.parentElement;
@@ -76,7 +76,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
       }
     };
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (event: TouchEvent) => {
       setTouchStartY(null);
     };
 
@@ -109,6 +109,7 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
     }
   };
 };
+
 
 
 
@@ -357,6 +358,44 @@ export default function Home() {
     }
   }, [activeSection]);
 
+  useEffect(() => {
+    if (projectNavRef.current) {
+      const sectionHeight = 34; // The height of each section in the project navigation
+      const duration = 500; // The duration of the animation in milliseconds
+      let scrollTimeout: any = null;
+  
+      const handleScroll = () => {
+        // Clear any previous timeout
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+  
+        // Set a new timeout to update the active section after the scroll ends
+        scrollTimeout = setTimeout(() => {
+          const scrollTop = projectNavRef.current.scrollTop;
+          const activeSection = Math.floor(scrollTop / sectionHeight);
+  
+          // Set the active section, but don't animate the scroll
+          setActiveSection(activeSection);
+        }, 100); // Set the timeout to 100ms (adjust as needed)
+      };
+  
+      // Add the scroll event listener
+      projectNavRef.current.addEventListener("scroll", handleScroll);
+  
+      // Remove the scroll event listener on cleanup
+      return () => {
+        projectNavRef.current.removeEventListener("scroll", handleScroll);
+        // Clear any pending timeout on cleanup
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+      };
+    }
+  }, []);
+  
+  
+
   useScrollDirection(activeSection, setActiveSection, isScrolling, setIsScrolling)
 
   return (
@@ -368,7 +407,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         {preloadImages()}
       </Head>
-      <main className={styles.main + ' ' + (mobileMenuOpen ? "has_open_menu" : '') + "section_" + sections[activeSection].id}>
+      <main className={styles.main + ' ' + (mobileMenuOpen ? "has_open_menu" : '') + "section_" + sections[activeSection]?.id || ""}>
         <div className={styles.sidebar_left}>
           <div className="delv_logo" onClick={() => setActiveSection(0)}>
             <motion.div
@@ -618,14 +657,14 @@ export default function Home() {
                   key={section.id} onClick={() => setActiveSection(index)}
                   // opacity based on closer to focused section
                   initial={{
-                    opacity: Math.max(0.1, 0.5 - (Math.abs(activeSection - index) * (isMobile ? 1 : 0.2))),
+                    opacity: Math.max((isMobile ? 0.4 : 0.1), 0.5 - (Math.abs(activeSection - index) * (isMobile ? 1 : 0.2))),
                     y: 10 * (index + 4),
                     scale: 0.9,
                   }}
                   animate={{
                     y: 0,
                     scale: 1,
-                    opacity: Math.max(0.1, 1 - (Math.abs(activeSection - index) * (isMobile ? 1 : 0.2))),
+                    opacity: Math.max((isMobile ? 0.4 : 0.1), 1 - (Math.abs(activeSection - index) * (isMobile ? 1 : 0.2))),
                     transition: { delay: 0, duration: activeSection ? 0.3 : 1 }
                   }}
                   whileHover={{ opacity: 1 }}
