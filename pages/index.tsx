@@ -639,10 +639,14 @@ export default function Home() {
                 opacity: activeSection == (sections.length - 1) ? 0 : 1,
                 y: activeSection * 34,
                 // x: sections[activeSection]?.caretOffset - 180,
-                transition: { duration: 0.3 }
+                transition: { 
+                  duration: 0.8,
+                  ease: 'easeInOut'
+                }
               }}
               transition={{
-                duration: 0.3,
+                duration: 0.8,
+                ease: 'easeInOut',
                 delay: activeSection ? 0 : 0.6
               }}
             />
