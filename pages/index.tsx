@@ -22,7 +22,10 @@ type Section = {
   }
 }
 
-const useScrollDirection = (activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
+const useScrollDirection = (
+    activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, 
+    caretPosition: number, setCaretPosition: React.Dispatch<React.SetStateAction<number>>,
+    isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
   const isInsideSections = (element: Element | null): boolean => {
@@ -34,21 +37,33 @@ const useScrollDirection = (activeSection: number, setActiveSection: React.Dispa
     }
     return false;
   };
-
   useEffect(() => {
+    let scrollTimeout: any = null;
     const handleScroll = (event: WheelEvent) => {
       if (isScrolling || isInsideSections(event.target as HTMLElement)) {
         return;
       }
-      if (event.deltaY < 0) {
-        handleScrollUp();
-      } else {
-        handleScrollDown();
+      caretPosition += event.deltaY / 2;
+      // caretPosition min 0 max 34*sections.length
+      if (caretPosition < 0) {
+        caretPosition = 0;
+      } else if (caretPosition > 34*(sections.length - 2)) {
+        caretPosition = 34*(sections.length - 2);
       }
-      setIsScrolling(true);
-      setTimeout(() => {
-        setIsScrolling(false)
-      }, 2000);
+      setCaretPosition(caretPosition);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(() => {
+        let section: number = Math.abs(caretPosition/34);
+        let leftOver = caretPosition%34;
+        if (leftOver > 17) {
+          section += 1;
+        }
+        // animate caret position to section
+        setCaretPosition(section*34);
+        setActiveSection(section);
+      }, 200);
     };
 
     const handleTouchStart = (event: TouchEvent) => {
@@ -299,6 +314,7 @@ const preloadImages = () => {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0)
+  const [caretPosition, setCaretPosition] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
   // for every group of footer create toggles
   const [footerToggles, setFooterToggles] = useState(Object.keys(Links).reduce((acc: Record<string, boolean>, key: string) => {
@@ -396,7 +412,10 @@ export default function Home() {
   
   
 
-  useScrollDirection(activeSection, setActiveSection, isScrolling, setIsScrolling)
+  useScrollDirection(
+    activeSection, setActiveSection,
+    caretPosition, setCaretPosition, 
+    isScrolling, setIsScrolling)
 
   return (
     <>
@@ -637,18 +656,18 @@ export default function Home() {
               animate={{
                 // y: focusedProject*34, 
                 opacity: activeSection == (sections.length - 1) ? 0 : 1,
-                y: activeSection * 34,
+                y: caretPosition,
                 // x: sections[activeSection]?.caretOffset - 180,
                 transition: { 
-                  duration: 0.8,
-                  ease: 'easeInOut'
+                  duration: 0.1,
+                  ease: 'linear'
                 }
               }}
-              transition={{
-                duration: 0.8,
-                ease: 'easeInOut',
-                delay: activeSection ? 0 : 0.6
-              }}
+              // transition={{
+              //   duration: 0.8,
+              //   ease: 'easeInOut',
+              //   delay: activeSection ? 0 : 0.6
+              // }}
             />
             <motion.div className="sections"
               animate={{
