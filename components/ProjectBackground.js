@@ -141,25 +141,21 @@ export function ProjectBackground({ projectId }) {
 
                 <motion.div
                     style={{
+                        height: '100%',
                         position: 'absolute',
-                        zIndex: '-1',
-                        // marginTop:'-35%',
-                        inset: isMobile ? '55% 3% 0%' : '14% 23%',
+                        zIndex: -1,
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        background: 'url(/assets/element-bg.svg)',
-                        backgroundSize: 'contain',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        aspectRatio: '761/586',
-                        transform: "translateZ(0)",
-                        bottom: isMobile ? '10%' : '',
-                        top: isDesktop ? '10%' : '',
+                        background: `url(/assets/element-bg.svg) center center / contain no-repeat`,
+                        aspectRatio: '761 / 586',
+                        transform: 'none',
+                        opacity: 1,
+                        width: '100%',
+                        backgroundSize: '60%',
                     }}
                     animate={{
                         opacity: 1,
-                        y: 0,
                         transition: {
                             duration: 1,
                         }

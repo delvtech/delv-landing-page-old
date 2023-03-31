@@ -126,7 +126,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 840px) {
     .main {
         flex-direction: column;
         overflow-y: hidden;
@@ -190,12 +190,20 @@
     
 }
 
-@media screen and (max-height: 740px) {
+@media screen and (max-width: 1000px) {
+    .sidebar_right .nav_footer {
+        position: fixed;
+        right: 40px;
+    }
+}
+
+@media screen and (max-height: 770px) {
    .content {
         padding-top: 100px;
+        align-items: stretch;
    }
    .main {
-        max-height: -webkit-max-content;
+        max-height: calc(100vh - 40px);
    }
 }
 

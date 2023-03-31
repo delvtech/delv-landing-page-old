@@ -82,14 +82,14 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
     if (!activeSection) return null
     if (activeSection.layout === 'main') {
         return (
-            <div>
+            <div style={{width:"100%"}}>
                 <motion.div
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 1 }}
                     className={styles.screen}
                     >
                     <motion.div 
-                        style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', height: '100%', maxWidth:'800px',fontSize:'32px', lineHeight:'1.125', margin: '0 auto'}}
+                        style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', maxWidth:'800px',fontSize:'32px', lineHeight:'1.125', margin: '0 auto'}}
                         {...animations.normal()}
                         transit={{duration: 1 }}
                         >
@@ -97,13 +97,13 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                                 <h1 className='main-intro' 
                                     style={{
                                         marginBottom: '1em', 
-                                        marginTop: isMobile ? "15%" : "-30%",
+                                        marginTop: isMobile ? "15%" : "0",
                                         marginBottom: isMobile ? "40px" : "7%",
                                         fontSize: isMobile ? '39px' : '3rem',
                                     }}> 
                                     {activeSection?.title} 
                                 </h1>
-                                <p className='font-sec'>
+                                <p className='font-sec'  style={{marginBottom: "30%", width: "100%"}}>
                                     <Balancer>
                                         {activeSection?.description}
                                     </Balancer>
@@ -120,7 +120,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
             className={styles.screen}
             >
                 <motion.div 
-                    style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', height: '100%', maxWidth:'800px',fontSize:'32px', margin: '0 auto'}}
+                    style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', maxWidth:'800px',fontSize:'32px', margin: '0 auto'}}
                     {...animations.normal()}
                     transition={{duration: 1}}
                     >
@@ -191,13 +191,13 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     )))}
                 </motion.div> */}
                 <motion.div 
-                    style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', height: '100%', maxWidth:'800px',fontSize:'32px', margin: '0 auto', zIndex:'5'}}
+                    style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center',  maxWidth:'800px',fontSize:'32px', margin: '0 auto', zIndex:'5'}}
                     {...animations.normal()}
                     transition={{duration: 1}}
                     >
                     <AnimatePresence mode="wait">
                         {!isMobile && 
-                            <h1 style={{marginTop:"-10%"}}>
+                            <h1 style={{marginTop:"5%"}}>
                                 {activeSection?.title}
                             </h1>
                         }
@@ -241,7 +241,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                                 alt={activeSection?.id}
                                 key={"main-logo-" + activeSection?.id}
                                 style= {{
-                                    marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '40px' : '0px',
+                                    marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '40px' : '20px',
                                 }}
                             />)}    
                         </AnimatePresence>

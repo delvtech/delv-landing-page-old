@@ -57,7 +57,7 @@ const useScrollDirection = (
       }
       scrollTimeout = setTimeout(() => {
         let section: number = Math.round(caretPosition/34);
-        let leftOver = caretPosition%34;
+        // let leftOver = caretPosition%34;
         // if (leftOver > 23) {
         //   section += 1;
         // }
