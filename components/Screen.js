@@ -97,16 +97,16 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                                 <h1 className='main-intro' 
                                     style={{
                                         marginBottom: '1em', 
-                                        marginTop: isMobile ? "20%" : "-30%",
-                                        marginBottom: isMobile ? "100px" : "7%",
+                                        marginTop: isMobile ? "15%" : "-30%",
+                                        marginBottom: isMobile ? "40px" : "7%",
                                         fontSize: isMobile ? '39px' : '3rem',
                                     }}> 
                                     {activeSection?.title} 
                                 </h1>
                                 <p className='font-sec'>
-                                    {/* <Balancer> */}
+                                    <Balancer>
                                         {activeSection?.description}
-                                    {/* </Balancer> */}
+                                    </Balancer>
                                 </p>
                             </AnimatePresence>
 

@@ -30,14 +30,14 @@
         flex-direction: column;
         align-items: center;
         max-height: calc(100vh - 295px);
-        gap: 90px;
+        gap: 60px;
        h1 {
         // display: none;
        }
     }
 }
 
-@media screen and (max-height: 730px) {
+@media screen and (max-height: 800px) {
     .screen {
         gap: 70px;
         // background: red;
@@ -50,13 +50,14 @@
 }
 
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 600px), (max-width: 450px) {
     .screen {
-        gap: 40px;
+        gap: 20px;
     }
     .project_logo {
         img {
             margin-top: 0 !important;
+            max-width: 80%;
         }
     }
 }

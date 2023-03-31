@@ -190,11 +190,19 @@
     
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 740px) {
    .content {
         padding-top: 100px;
    }
    .main {
-        max-height: -webkit-fill-available;
+        max-height: -webkit-max-content;
    }
+}
+
+@media screen and (max-height: 600px), (max-width: 450px) {
+    .main{
+        padding-top: 90px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }

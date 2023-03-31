@@ -124,6 +124,9 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.21em;
     text-transform: uppercase;
   }
+  .delv_logo {
+    position: static;
+  }
 }
 
 .delv_logo {
@@ -253,17 +256,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-@media screen and (max-height: 720px) {
-  .prod-descr {
-      font-size: 15px !important;
+@media screen and (max-height: 740px) {
+  .font-sec:not(.prod-descr), .prod-descr {
+      font-size: 18px !important;
       line-height: 1.4;
+  }
+  .main-intro {
+    font-size: 37px !important;
+    line-height: 1.25;
   }
 }
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 600px), (max-width: 450px) {
   .prod-descr {
       font-size: 12px !important;
       line-height: 1.25;
+  }
+  .font-sec:not(.prod-descr), .prod-descr {
+    font-size: 15px !important;
+    line-height: 1.4;
+    background-attachment: red;
+  }
+  .delv_logo {
+    top: 40px !important;
+  }
+  .mobile_nav_toggle {
+    top: 24px;
   }
 }
 
