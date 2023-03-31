@@ -106,13 +106,13 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                             <h1 className='main-intro'
                                 style={{
                                     marginBottom: '1em',
-                                    marginTop: isMobile ? "15%" : "0",
+                                    marginTop: "15%",
                                     marginBottom: isMobile ? "40px" : "7%",
                                     fontSize: isMobile ? '39px' : '3rem',
                                 }}>
                                 {activeSection?.title}
                             </h1>
-                            <p className='font-sec' style={{ marginBottom: "30%", width: "100%" }}>
+                            <p className='font-sec' style={{width: "100%" }}>
                                 <Balancer>
                                     {activeSection?.description}
                                 </Balancer>
@@ -146,17 +146,17 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     </AnimatePresence>
                     <p className='font-sec prod-descr' style={{ marginTop: "10%", fontSize: "13px", lineHeight: "19px" }}>
                         <div className={styles.mobile_flex}>
-                            {Object.keys(Links).map((group, index) => (
-                                <div key={"group" + group} style={{ marginTop: "30px" }}>
+                            {/* {Object.keys(Links).map((group, index) => ( */}
+                                <div style={{ marginTop: "30px" }}>
                                     <div className={styles.links}>
-                                        {Links[group].map((link, index) => (
-                                            <div key={group + index}>
+                                        {Links.Build.map((link, index) => (
+                                            <div key={index}>
                                                 <a href={link.url}>{link.name}</a>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
-                            ))}
+                            {/* ))} */}
                         </div>
                     </p>
                     {activeSection?.link && (
@@ -235,7 +235,6 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                         position: 'relative',
                         marginTop: isMobile ? '0' : '30px',
                         minWidth: '600px',
-                        minHeight: isMobile ? '0' : '300px',
                         maxWidth: (activeSection.id == 'Echo' && isMobile) ? '206px' : '100%',
                         maxHeight: '600px',
                         display: 'flex',
@@ -261,5 +260,4 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
             </div>
         </motion.div>
     )
-
 }

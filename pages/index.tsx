@@ -539,9 +539,9 @@ export default function Home() {
           </motion.div>
           <motion.div className={styles.nav_footer + " mobile-hidden"}>
             <a href="#" onClick={() => setActiveSection(7)}>
-              About
+              Build
             </a>
-            <a href="#">Terms</a>
+            <a href="https://elementfi.s3.us-east-2.amazonaws.com/element-finance-terms-of-service.pdf" target="_blank">Terms</a>
           </motion.div>
         </div>
         <div className={styles.content}>
@@ -593,6 +593,7 @@ export default function Home() {
         <div className={styles.sidebar_right + " mobile-hidden"}>
           <motion.div className={styles.nav_footer}>
             {Object.keys(Links).map((group, index) => (
+              group == "Build" ? null : // hotfix for socials
               <div key={index} onClick={() => setFooterToggles({ ...footerToggles, [group]: !footerToggles[group] })} className={footerToggles[group] ? styles.nav_footer_group_active : styles.nav_footer_group}>
                 <div>
                   {Links[group].map((link, index) => (
