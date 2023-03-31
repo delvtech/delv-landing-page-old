@@ -24,7 +24,7 @@ export const sections: Section[] = [
         id: 'Element',
         title: 'Fixed rate protocol',
         description: 'It all began with Element, an open-source decentralized protocol for fixed and variable yield markets.',
-        link: 'https://element.fi',
+        link: 'https://paper.element.fi/',
         backgroundClass: 'bg-white',
         logo: {
             w: 325,
