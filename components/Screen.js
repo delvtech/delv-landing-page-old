@@ -94,7 +94,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                             justifyContent: 'start',
                             alignItems: 'center',
                             maxWidth:'800px',
-                            ontSize:'32px',
+                            fontSize:'32px',
                             lineHeight:'1.125',
                             margin: '0 auto'
                         }}
