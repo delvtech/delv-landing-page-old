@@ -713,7 +713,7 @@ export default function Home() {
                   height: '32px',
                   background: `url(/assets/arrow.svg) center center / contain no-repeat`,
                   position: 'absolute',
-                  bottom: '10%',
+                  bottom: '7%',
                   left: '50%',
                   translateX: '-50%',
                   zIndex: 1,
