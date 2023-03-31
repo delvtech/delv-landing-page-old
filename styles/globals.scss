@@ -137,6 +137,10 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
+*::-webkit-scrollbar { // mobile chrome scrollbar
+  width: 0px;
+}
+
 
 @media screen and (max-width: 840px) {
   .mobile-hidden {
@@ -262,7 +266,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-@media screen and (max-height: 740px) {
+@media screen and (max-height: 780px) {
   .font-sec:not(.prod-descr), .prod-descr {
       font-size: 18px !important;
       line-height: 1.4;
@@ -291,6 +295,12 @@ h1, h2, h3, h4, h5, h6 {
   }
   .mobile_nav_toggle {
     top: 24px;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  .font-sec:not(.prod-descr), .prod-descr{
+      margin-bottom: 0 !important;
   }
 }
 

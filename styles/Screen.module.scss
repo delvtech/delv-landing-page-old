@@ -68,4 +68,8 @@
     }
 }
 
-
+@media screen and (max-height: 400px) {
+    .project_logo {
+        display: none;
+    }
+}

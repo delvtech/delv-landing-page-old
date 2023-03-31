@@ -197,13 +197,13 @@
     }
 }
 
-@media screen and (max-height: 770px) {
+@media screen and (max-height: 780px) {
    .content {
         padding-top: 100px;
         align-items: stretch;
    }
    .main {
-        max-height: calc(100vh - 40px);
+        max-height: calc(100vh - 100px);;
    }
 }
 
@@ -212,5 +212,11 @@
         padding-top: 90px;
         padding-left: 15px;
         padding-right: 15px;
+    }
+}
+
+@media screen and (max-height: 400px) {
+    .main{
+        padding-top: 60px;
     }
 }

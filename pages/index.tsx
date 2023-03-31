@@ -283,12 +283,12 @@ const preloadImages = () => {
     if (section.logo) {
       return (
         <>
-          {/* <link
+          <link
             key={section.id + 'logo'}
             rel="preload"
             href={`/assets/${section.id.toLowerCase()}.png`}
             as="image"
-          /> */}
+          />
           <link
             key={section.id + 'arc'}
             rel="preload"

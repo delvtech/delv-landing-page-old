@@ -89,7 +89,15 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     className={styles.screen}
                     >
                     <motion.div 
-                        style={{display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', maxWidth:'800px',fontSize:'32px', lineHeight:'1.125', margin: '0 auto'}}
+                        style={{display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'start',
+                            alignItems: 'center',
+                            maxWidth:'800px',
+                            ontSize:'32px',
+                            lineHeight:'1.125',
+                            margin: '0 auto'
+                        }}
                         {...animations.normal()}
                         transit={{duration: 1 }}
                         >
