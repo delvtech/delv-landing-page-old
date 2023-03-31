@@ -572,7 +572,13 @@ export default function Home() {
               y: 10,
               transition: { duration: 0.3, fill: "forwards" }
             }}
-            onClick={() => setActiveSection(activeSection == (sections.length - 1) ? 0 : activeSection + 1)}
+            onClick={() => {
+              if (activeSection < sections.length - 2) {
+                setActiveSection(activeSection + 1);
+              } else {
+                setActiveSection(0);
+              }
+            }}
           >
           </motion.div>
           <AnimatePresence mode="wait">
