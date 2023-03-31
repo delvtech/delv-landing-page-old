@@ -241,7 +241,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                                 alt={activeSection?.id}
                                 key={"main-logo-" + activeSection?.id}
                                 style= {{
-                                    marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '100px' : '0px',
+                                    marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '40px' : '0px',
                                 }}
                             />)}    
                         </AnimatePresence>
