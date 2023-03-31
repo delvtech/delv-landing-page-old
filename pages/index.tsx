@@ -541,7 +541,6 @@ export default function Home() {
         </div>
         <div className={styles.content}>
           <motion.div
-            className={styles.arrow_down}
             style={{
               width: '32px',
               height: '32px',
