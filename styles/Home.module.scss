@@ -56,7 +56,7 @@
 .main {
     display: flex;
     height: 100vh;
-    max-height: -webkit-fill-available;
+    // max-height: -webkit-fill-available;
     padding: 60px 40px 22px 40px;
 }
 .content {
@@ -192,6 +192,9 @@
 
 @media screen and (max-height: 700px) {
    .content {
-    padding-top: 100px;
+        padding-top: 100px;
+   }
+   .main {
+        max-height: -webkit-fill-available;
    }
 }

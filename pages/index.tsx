@@ -10,7 +10,6 @@ import { ProjectBackground } from '@/components/ProjectBackground'
 type Section = {
   id: string
   layout?: 'main' | 'section' | 'footer' | 'about'
-  caretOffset: number
   title: string
   description: string
   link?: string
@@ -40,7 +39,9 @@ const useScrollDirection = (
   useEffect(() => {
     let scrollTimeout: any = null;
     const handleScroll = (event: WheelEvent) => {
-      if (isScrolling || isInsideSections(event.target as HTMLElement)) {
+      if (isScrolling 
+        // || isInsideSections(event.target as HTMLElement)
+        ) {
         return;
       }
       caretPosition += event.deltaY / 2;
@@ -55,12 +56,12 @@ const useScrollDirection = (
         clearTimeout(scrollTimeout);
       }
       scrollTimeout = setTimeout(() => {
-        let section: number = Math.abs(caretPosition/34);
+        let section: number = Math.round(caretPosition/34);
         let leftOver = caretPosition%34;
-        if (leftOver > 17) {
-          section += 1;
-        }
-        // animate caret position to section
+        // if (leftOver > 23) {
+        //   section += 1;
+        // }
+
         setCaretPosition(section*34);
         setActiveSection(section);
       }, 200);
@@ -108,6 +109,12 @@ const useScrollDirection = (
     };
   }, [activeSection, isScrolling, touchStartY]);
 
+
+  // on change of activeSection, change caret position
+  useEffect(() => {
+    setCaretPosition(activeSection*34);
+  }, [activeSection]);
+  
   const handleScrollUp = () => {
     if (activeSection > 0) {
       setActiveSection(activeSection - 1);
@@ -132,16 +139,14 @@ const sections: Section[] = [
   {
     id: 'Delv',
     layout: 'main',
-    caretOffset: 31,
     title: 'The Factory for DeFi',
-    description: 'Delv is building the full stack of decentralized finance, from core infrastructure to structured products.',
+    description: 'Delv is developing the complete suite of decentralized finance, encompassing everything from core infrastructure to structured products. Our protocols operate in tandem to facilitate the seamless creation of a novel financial system.',
     backgroundClass: 'bg-white',
   },
   {
     id: 'Element',
-    caretOffset: 72,
     title: 'Fixed rate protocol',
-    description: 'It all began with Element, an open-source protocol for fixed and variable yield markets.',
+    description: 'It all began with Element, an open-source decentralized protocol for fixed and variable yield markets.',
     link: 'https://element.fi',
     backgroundClass: 'bg-white',
     logo: {
@@ -151,9 +156,8 @@ const sections: Section[] = [
   },
   {
     id: 'Council',
-    caretOffset: 70,
     title: 'Council protocol',
-    description: 'Welcome to Delv DAO\'s v0 Governance System. Explore below to learn more about the launch of the DAO.',
+    description: 'Council is a decentralized governance system and a suite of tools that allows a community to deploy and manage a DAO. It represents a new era of governance innovation, allowing anyone to build adaptable governance systems using the security of on-chain governance while allowing for unprecedented modularity and flexibility.',
     link: 'https://council.element.fi/',
     backgroundClass: 'bg-black',
     logo: {
@@ -163,9 +167,8 @@ const sections: Section[] = [
   },
   {
     id: 'Elfiverse',
-    caretOffset: 87,
     title: 'NFTs meet DeFi',
-    description: 'The lore of the Element DAO is born with Elfiverse – An endeavor to intersect DeFi and NFT worlds that draws on both network effects and community building. Elfiverse pushes the boundaries of on-chain governance and voting vaults that Council introduced.',
+    description: 'The lore of the Element DAO was born with Elfiverse – an endeavor to intersect the DeFi and NFT worlds while catalyzing network effects and community building. Elfiverse pushes the boundaries of on-chain governance allowing communities to look beyond the 1-token-1-vote system, driving inclusive governance participation for all.',
     link: 'https://elfiverse.element.fi/',
     backgroundClass: 'bg-black',
     logo: {
@@ -175,9 +178,8 @@ const sections: Section[] = [
   },
   {
     id: 'Hyperdrive',
-    caretOffset: 108,
     title: 'A new way to trade rates',
-    description: 'Hyperdrive is the next research leap from the Delv Finance team on variable and fixed rate primitives. No preset expiration dates, no fragmented liquidity, and no LP rollovers, aka everlasting liquidity.',
+    description: 'Hyperdrive is the next research leap from Delv on variable and fixed rate primitives. It is an advanced AMM featuring no preset expiration dates, no fragmented liquidity, and no LP rollovers — aka everlasting liquidity.',
     backgroundClass: 'bg-black',
     link: 'https://hyperdrive.element.fi/',
     logo: {
@@ -187,9 +189,8 @@ const sections: Section[] = [
   },
   {
     id: 'Echo',
-    caretOffset: 34,
     title: 'Browser-Layer P2P',
-    description: 'Echo is a new P2P protocol that focuses on the browser-layer. It enables any visitor of a web3 application to peer/host infrastructure needed to power the application. Echo is a natural adaptor for Council, allowing DAOs to deploy frontends and data services for their products.\nIt enables a world of truly decentralized protocols and DAOs.',
+    description: 'Echo is a new P2P protocol that focuses on the browser-layer. It enables any visitor of a web3 application to peer/host infrastructure needed to power the application. Echo is a natural adaptor for Council, allowing DAOs to deploy frontends and data services for their products. It enables a world of truly decentralized protocols and DAOs.',
     backgroundClass: 'bg-black',
     logo: {
       w: 286,
@@ -198,9 +199,8 @@ const sections: Section[] = [
   },
   {
     id: 'Agent_0',
-    caretOffset: 68,
     title: 'Data Simulation',
-    description: 'We built a data simulation framework as we were researching the new AMM design in Hyperdrive, before implementing it in Solidity. It allows us to build bots and to graph/stress test against various edge cases.\nWe will also introduce machine learning to further our research endeavors.',
+    description: 'We built a data simulation framework to aid progress on the new Hyperdrive AMM design before implementing it in Solidity. The simulation models include smart agents that allow our team to graph/stress test cryptoeconomic systems against various edge cases, while simultaneously uncovering macroscale effects to optimize the performance, efficiency, and effectiveness of the system.\n\n We will leverage reinforcement machine learning to further our research endeavors, starting with discovering profitable as well as pathological behavior patterns.',
     backgroundClass: 'bg-black',
     logo: {
       w: 400,
@@ -211,7 +211,6 @@ const sections: Section[] = [
     id: 'About',
     hidden: true,
     layout: 'about',
-    caretOffset: 72,
     title: 'Build with us',
     description: 'Let’s reimagine the future of finance together.',
     backgroundClass: 'bg-black',
@@ -477,7 +476,7 @@ export default function Home() {
               {sections.map((section, index) => {
                 return (
                   <motion.div
-                    key={section?.id}
+                    key={section?.id || index}
                     style={{
                       outline: 'none',
                       position: 'absolute',
@@ -575,7 +574,7 @@ export default function Home() {
                   {sections.map((section, index) => {
                     return (
                       <motion.div
-                        key={section?.id}
+                        key={section?.id+index}
                         style={{
                           outline: 'none',
                           position: 'absolute',
@@ -619,7 +618,7 @@ export default function Home() {
               </div>
               <div className="mobile_nav_projects">
                 {sections.map((section, index) => (
-                  <div className={styles.mobile_nav_item} onClick={() => { setActiveSection(index); setMobileMenuOpen(false) }} key={section.id}>
+                  <div className={styles.mobile_nav_item} onClick={() => { setActiveSection(index); setMobileMenuOpen(false) }} key={"nav-"+section.id+index}>
                     {section.id}
                   </div>
                 ))}
@@ -657,7 +656,6 @@ export default function Home() {
                 // y: focusedProject*34, 
                 opacity: activeSection == (sections.length - 1) ? 0 : 1,
                 y: caretPosition,
-                // x: sections[activeSection]?.caretOffset - 180,
                 transition: { 
                   duration: 0.1,
                   ease: 'linear'
@@ -718,7 +716,7 @@ export default function Home() {
               setActiveSection={setActiveSection}
               activeSectionPosition={activeSection}
               Links={Links}
-              key={activeSection}
+              key={activeSection+"screen"}
             />
           </AnimatePresence>
         </div>

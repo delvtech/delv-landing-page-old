@@ -136,10 +136,10 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     </AnimatePresence>
                     <p className='font-sec prod-descr' style={{marginTop:"10%", fontSize: "13px", lineHeight: "19px"}}>
                         {Object.keys(Links).map((group, index) => (
-                            <div key={group} style={{marginTop:"30px"}}>
+                            <div key={"group"+group} style={{marginTop:"30px"}}>
                                 <div className={styles.links}>
                                     {Links[group].map((link, index) => (
-                                    <div key={index}>
+                                    <div key={group+index}>
                                         <a href={link.url}>{link.name}</a>
                                     </div>
                                     ))}
@@ -209,7 +209,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                         </p>
                     </AnimatePresence>
                     {activeSection?.link && (
-                        <a href={activeSection?.link} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                        <a href={activeSection?.link} target="_blank" rel="noopener noreferrer" className={styles.link} key={activeSection + "link"}>
                             <Image src="/ext.svg" width={20} height={20} alt="External Link" />
                         </a>
                     )}
@@ -239,6 +239,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                             {activeSection?.logo && (<img
                                 src={`/assets/${activeSection?.id.toLowerCase()}.svg`}
                                 alt={activeSection?.id}
+                                key={"main-logo-" + activeSection?.id}
                                 style= {{
                                     marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '100px' : '0px',
                                 }}
