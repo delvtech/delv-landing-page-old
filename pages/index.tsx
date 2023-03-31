@@ -11,109 +11,109 @@ import { sections, Links } from '@/data/content';
 
 
 const useScrollDirection = (
-  activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>, 
+  activeSection: number, setActiveSection: React.Dispatch<React.SetStateAction<number>>,
   caretPosition: number, setCaretPosition: React.Dispatch<React.SetStateAction<number>>,
   isScrolling: boolean, setIsScrolling: React.Dispatch<React.SetStateAction<boolean>>) => {
-const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
-const isInsideSections = (element: Element | null): boolean => {
-  while (element) {
-    if (element.classList && element.classList.contains('sections') || element.classList.contains('mobile_nav')) {
-      return true;
-    }
-    element = element.parentElement;
-  }
-  return false;
-};
-useEffect(() => {
-  let scrollTimeout: any = null;
-  const handleScroll = (event: WheelEvent) => {
-    if (isScrolling 
-      // || isInsideSections(event.target as HTMLElement)
-      ) {
-      return;
-    }
-    caretPosition += event.deltaY / 3;
-    if (caretPosition < 0) {
-      caretPosition = 0;
-    } else if (caretPosition > 34*(sections.length - 2)) {
-      caretPosition = 34*(sections.length - 2);
-    }
-    setCaretPosition(caretPosition);
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout);
-    }
-    scrollTimeout = setTimeout(() => {
-      let section: number = Math.round(caretPosition/34);
-
-      setCaretPosition(section*34);
-      setActiveSection(section);
-    }, 200);
-  };
-
-  const handleTouchStart = (event: TouchEvent) => {
-    setTouchStartY(event.touches[0].clientY);
-  };
-
-  const handleTouchMove = (event: TouchEvent) => {
-    if (!touchStartY || isInsideSections(event.target as HTMLElement)) return;
-    if (!touchStartY) return;
-
-    const touchEndY = event.touches[0].clientY;
-    const deltaY = touchStartY - touchEndY;
-
-    if (Math.abs(deltaY) > 50) { // Adjust this value for sensitivity
-      if (deltaY > 0) {
-        handleScrollDown();
-      } else {
-        handleScrollUp();
+  const isInsideSections = (element: Element | null): boolean => {
+    while (element) {
+      if (element.classList && element.classList.contains('sections') || element.classList.contains('mobile_nav')) {
+        return true;
       }
+      element = element.parentElement;
+    }
+    return false;
+  };
+  useEffect(() => {
+    let scrollTimeout: any = null;
+    const handleScroll = (event: WheelEvent) => {
+      if (isScrolling
+        // || isInsideSections(event.target as HTMLElement)
+      ) {
+        return;
+      }
+      caretPosition += event.deltaY / 3;
+      if (caretPosition < 0) {
+        caretPosition = 0;
+      } else if (caretPosition > 34 * (sections.length - 2)) {
+        caretPosition = 34 * (sections.length - 2);
+      }
+      setCaretPosition(caretPosition);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(() => {
+        let section: number = Math.round(caretPosition / 34);
+
+        setCaretPosition(section * 34);
+        setActiveSection(section);
+      }, 200);
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      setTouchStartY(event.touches[0].clientY);
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (!touchStartY || isInsideSections(event.target as HTMLElement)) return;
+      if (!touchStartY) return;
+
+      const touchEndY = event.touches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      if (Math.abs(deltaY) > 50) { // Adjust this value for sensitivity
+        if (deltaY > 0) {
+          handleScrollDown();
+        } else {
+          handleScrollUp();
+        }
+        setTouchStartY(null);
+        setIsScrolling(true);
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 2000);
+      }
+    };
+
+    const handleTouchEnd = (event: TouchEvent) => {
       setTouchStartY(null);
-      setIsScrolling(true);
-      setTimeout(() => {
-        setIsScrolling(false);
-      }, 2000);
+    };
+
+    window.addEventListener('wheel', handleScroll);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [activeSection, isScrolling, touchStartY]);
+
+
+  // on change of activeSection, change caret position
+  useEffect(() => {
+    setCaretPosition(activeSection * 34);
+  }, [activeSection]);
+
+  const handleScrollUp = () => {
+    if (activeSection > 0) {
+      setActiveSection(activeSection - 1);
+    } else {
+      setActiveSection(sections.length - 2);
     }
   };
 
-  const handleTouchEnd = (event: TouchEvent) => {
-    setTouchStartY(null);
+  const handleScrollDown = () => {
+    if (activeSection < sections.length - 2) {
+      setActiveSection(activeSection + 1);
+    } else {
+      setActiveSection(0);
+    }
   };
-
-  window.addEventListener('wheel', handleScroll);
-  window.addEventListener('touchstart', handleTouchStart);
-  window.addEventListener('touchmove', handleTouchMove);
-  window.addEventListener('touchend', handleTouchEnd);
-
-  return () => {
-    window.removeEventListener('wheel', handleScroll);
-    window.removeEventListener('touchstart', handleTouchStart);
-    window.removeEventListener('touchmove', handleTouchMove);
-    window.removeEventListener('touchend', handleTouchEnd);
-  };
-}, [activeSection, isScrolling, touchStartY]);
-
-
-// on change of activeSection, change caret position
-useEffect(() => {
-  setCaretPosition(activeSection*34);
-}, [activeSection]);
-
-const handleScrollUp = () => {
-  if (activeSection > 0) {
-    setActiveSection(activeSection - 1);
-  } else {
-    setActiveSection(sections.length - 2);
-  }
-};
-
-const handleScrollDown = () => {
-  if (activeSection < sections.length - 2) {
-    setActiveSection(activeSection + 1);
-  } else {
-    setActiveSection(0);
-  }
-};
 };
 
 // preload images using head and link preload
@@ -197,7 +197,7 @@ export default function Home() {
       const startTime = performance.now();
       const startScrollTop = projectNavRef.current.scrollTop;
 
-      const animateScroll = (currentTime: number) => {  
+      const animateScroll = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
 
@@ -217,26 +217,26 @@ export default function Home() {
       const sectionHeight = 34; // The height of each section in the project navigation
       const duration = 500; // The duration of the animation in milliseconds
       let scrollTimeout: any = null;
-  
+
       const handleScroll = () => {
         // Clear any previous timeout
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);
         }
-  
+
         // Set a new timeout to update the active section after the scroll ends
         scrollTimeout = setTimeout(() => {
           const scrollTop = projectNavRef.current.scrollTop;
           const activeSection = Math.floor(scrollTop / sectionHeight);
-  
+
           // Set the active section, but don't animate the scroll
           setActiveSection(activeSection);
         }, 100); // Set the timeout to 100ms (adjust as needed)
       };
-  
+
       // Add the scroll event listener
       projectNavRef.current.addEventListener("scroll", handleScroll);
-  
+
       // Remove the scroll event listener on cleanup
       return () => {
         projectNavRef.current.removeEventListener("scroll", handleScroll);
@@ -247,12 +247,12 @@ export default function Home() {
       };
     }
   }, []);
-  
-  
+
+
 
   useScrollDirection(
     activeSection, setActiveSection,
-    caretPosition, setCaretPosition, 
+    caretPosition, setCaretPosition,
     isScrolling, setIsScrolling)
 
   return (
@@ -413,7 +413,7 @@ export default function Home() {
                   {sections.map((section, index) => {
                     return (
                       <motion.div
-                        key={section?.id+index}
+                        key={section?.id + index}
                         style={{
                           outline: 'none',
                           position: 'absolute',
@@ -457,7 +457,7 @@ export default function Home() {
               </div>
               <div className="mobile_nav_projects">
                 {sections.map((section, index) => (
-                  <div className={styles.mobile_nav_item} onClick={() => { setActiveSection(index); setMobileMenuOpen(false) }} key={"nav-"+section.id+index}>
+                  <div className={styles.mobile_nav_item} onClick={() => { setActiveSection(index); setMobileMenuOpen(false) }} key={"nav-" + section.id + index}>
                     {section.id}
                   </div>
                 ))}
@@ -495,16 +495,16 @@ export default function Home() {
                 // y: focusedProject*34, 
                 opacity: activeSection == (sections.length - 1) ? 0 : 1,
                 y: caretPosition,
-                transition: { 
+                transition: {
                   duration: isScrolling ? 0 : 0.3,
                   ease: 'linear'
                 }
               }}
-              // transition={{
-              //   duration: 0.8,
-              //   ease: 'easeInOut',
-              //   delay: activeSection ? 0 : 0.6
-              // }}
+            // transition={{
+            //   duration: 0.8,
+            //   ease: 'easeInOut',
+            //   delay: activeSection ? 0 : 0.6
+            // }}
             />
             <motion.div className="sections"
               animate={{
@@ -545,35 +545,35 @@ export default function Home() {
           </motion.div>
         </div>
         <div className={styles.content}>
-        <motion.div
-              className={styles.arrow_down}
-              style={{
-                  width: '32px',
-                  height: '32px',
-                  background: `url(/assets/arrow.svg) center center / contain no-repeat`,
-                  position: 'absolute',
-                  bottom: '7%',
-                  left: '50%',
-                  translateX: '-50%',
-                  zIndex: 1,
-                  cursor: 'pointer'
-              }}
-              animate={{
-                  scale: [1, 0.9, 1, 0.95, 1.02, 0.97, 1],
-                  y: [0, -10, 0, -10, 0, -10, 0],
-              }}
-              transition={{
-                  duration: 10,
-                  ease: "easeInOut",
-                  times: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                  repeat: Infinity
-              }}
-              exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: { duration: 0.3, fill: "forwards" }
-              }}
-              onClick={() => setActiveSection(activeSection == (sections.length - 1) ? 0 : activeSection + 1)}
+          <motion.div
+            className={styles.arrow_down}
+            style={{
+              width: '32px',
+              height: '32px',
+              background: `url(/assets/arrow.svg) center center / contain no-repeat`,
+              position: 'absolute',
+              bottom: '7%',
+              left: '50%',
+              translateX: '-50%',
+              zIndex: 1,
+              cursor: 'pointer'
+            }}
+            animate={{
+              scale: [1, 0.9, 1, 0.95, 1.02, 0.97, 1],
+              y: [0, -10, 0, -10, 0, -10, 0],
+            }}
+            transition={{
+              duration: 10,
+              ease: "easeInOut",
+              times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+              repeat: Infinity
+            }}
+            exit={{
+              opacity: 0,
+              y: 10,
+              transition: { duration: 0.3, fill: "forwards" }
+            }}
+            onClick={() => setActiveSection(activeSection == (sections.length - 1) ? 0 : activeSection + 1)}
           >
           </motion.div>
           <AnimatePresence mode="wait">
@@ -586,7 +586,7 @@ export default function Home() {
               setActiveSection={setActiveSection}
               activeSectionPosition={activeSection}
               Links={Links}
-              key={activeSection+"screen"}
+              key={activeSection + "screen"}
             />
           </AnimatePresence>
         </div>

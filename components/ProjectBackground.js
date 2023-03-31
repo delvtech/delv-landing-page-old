@@ -10,19 +10,19 @@ export function ProjectBackground({ projectId }) {
 
     useEffect(() => {
         const handleResize = () => {
-        if (window.innerWidth < 768) {
-            setIsMobile(true)
-            setIsTablet(false)
-            setIsDesktop(false)
-        } else if (window.innerWidth < 1024) {
-            setIsMobile(false)
-            setIsTablet(true)
-            setIsDesktop(false)
-        } else {
-            setIsMobile(false)
-            setIsTablet(false)
-            setIsDesktop(true)
-        }
+            if (window.innerWidth < 768) {
+                setIsMobile(true)
+                setIsTablet(false)
+                setIsDesktop(false)
+            } else if (window.innerWidth < 1024) {
+                setIsMobile(false)
+                setIsTablet(true)
+                setIsDesktop(false)
+            } else {
+                setIsMobile(false)
+                setIsTablet(false)
+                setIsDesktop(true)
+            }
         }
         window.addEventListener('resize', handleResize)
         handleResize()
@@ -79,7 +79,7 @@ export function ProjectBackground({ projectId }) {
                 >
 
                 </motion.div>
-                        
+
 
             </motion.div>
         ),
