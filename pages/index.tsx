@@ -253,20 +253,20 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Delv</title>
-        <meta name="description" content="Delv - The Factory for DeFi" />
+        <title>DELV - The Factory for DeFi</title>
+        <meta name="description" content="DELV - The Factory for DeFi" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href="/favicon.png" />
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@delv-tech" />
-        <meta name="twitter:title" content="Delv" />
-        <meta name="twitter:description" content="Delv - The Factory for DeFi" />
+        <meta name="twitter:title" content="DELV" />
+        <meta name="twitter:description" content="DELV - The Factory for DeFi" />
         <meta name="twitter:image" content="https://i.imgur.com/ZUMCpHd.png" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Delve" />
-        <meta property="og:description" content="Delv - The Factory for DeFi" />
+        <meta property="og:title" content="DELV" />
+        <meta property="og:description" content="DELV - The Factory for DeFi" />
         <meta property="og:url" content="https://delv.tech/" />
         <meta property="og:image" content="https://i.imgur.com/ZUMCpHd.png" />
         {preloadImages()}

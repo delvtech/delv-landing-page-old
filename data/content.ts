@@ -17,7 +17,7 @@ export const sections: Section[] = [
         id: 'Delv',
         layout: 'main',
         title: 'The Factory for DeFi',
-        description: 'Delv is building the complete suite of decentralized finance. From core infrastructure to structured products, our protocols work together to help create and usher in the new financial system.',
+        description: 'DELV is building the complete suite of decentralized finance. From core infrastructure to structured products, our protocols work together to help create and usher in the new financial system.',
         backgroundClass: 'bg-white',
     },
     {
