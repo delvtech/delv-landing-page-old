@@ -131,6 +131,7 @@
         flex-direction: column;
         overflow-y: hidden;
         padding-top: 110px;
+        max-height: -webkit-fill-available;
     }
     .sidebar {
         align-items: center;
@@ -236,5 +237,11 @@
 @media screen and (max-height: 400px) {
     .main{
         padding-top: 60px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .main {
+        max-height: -webkit-fill-available;
     }
 }
