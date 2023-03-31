@@ -80,16 +80,16 @@ const useScrollDirection = (
       setTouchStartY(null);
     };
 
-    window.addEventListener('wheel', handleScroll);
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
+    // window.addEventListener('wheel', handleScroll);
+    // window.addEventListener('touchstart', handleTouchStart);
+    // window.addEventListener('touchmove', handleTouchMove);
+    // window.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      window.removeEventListener('wheel', handleScroll);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
+      // window.removeEventListener('wheel', handleScroll);
+      // window.removeEventListener('touchstart', handleTouchStart);
+      // window.removeEventListener('touchmove', handleTouchMove);
+      // window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [activeSection, isScrolling, touchStartY]);
 
