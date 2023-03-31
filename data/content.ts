@@ -17,13 +17,13 @@ export const sections: Section[] = [
         id: 'Delv',
         layout: 'main',
         title: 'The Factory for DeFi',
-        description: 'Delv is developing the complete suite of decentralized finance. From core infrastructure to structured products, our protocols work together to help create and usher in the new financial system.',
+        description: 'Delv is building the complete suite of decentralized finance. From core infrastructure to structured products, our protocols work together to help create and usher in the new financial system.',
         backgroundClass: 'bg-white',
     },
     {
         id: 'Element',
         title: 'Fixed rate protocol',
-        description: 'It all began with an open-source protocol for fixed and variable yield markets, originally called Element. The protocol was released to the governance community on March 31, 2022.',
+        description: 'It all began with an open-source protocol for fixed and variable yield markets, originally called Element.',
         link: 'https://paper.element.fi/',
         backgroundClass: 'bg-white',
         logo: {
@@ -34,7 +34,7 @@ export const sections: Section[] = [
     {
         id: 'Council',
         title: 'Council protocol',
-        description: 'Council is a decentralized governance system and suite of tools that allows a community to deploy and manage a DAO. It represents a new era of governance innovation, allowing anyone to build adaptable governance systems using the security of on-chain governance while allowing for unprecedented modularity and flexibility.',
+        description: 'The time to govern then came with Council, a decentralized governance system and a suite of tools that allow a community to deploy and manage a DAO. With Council in place, on March 31, 2022, the team would relinquish control of the Element Protocol to the community.',
         link: 'https://council.element.fi/',
         backgroundClass: 'bg-black',
         logo: {
@@ -56,7 +56,7 @@ export const sections: Section[] = [
     {
         id: 'Hyperdrive',
         title: 'A new way to trade rates',
-        description: 'Hyperdrive is the next research leap from Delv on variable and fixed rate primitives. It is an advanced AMM featuring no preset expiration dates, no fragmented liquidity, and no LP rollovers — aka everlasting liquidity.',
+        description: 'Hyperdrive is the next research leap from DELV on variable and fixed rate primitives. It is an advanced AMM featuring no preset expiration dates, no fragmented liquidity, and no LP rollovers — aka everlasting liquidity.',
         backgroundClass: 'bg-black',
         link: 'https://hyperdrive.element.fi/',
         logo: {
