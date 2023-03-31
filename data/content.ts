@@ -102,22 +102,6 @@ export const Links: {
 } = {
     "Build": [
         {
-            "name": "Documentation",
-            "url": "https://docs.element.fi/"
-        },
-        {
-            "name": "White paper",
-            "url": "https://paper.element.fi//"
-        },
-        {
-            "name": "Tutorial",
-            "url": "https://medium.com/element-finance/how-to-access-high-fixed-apr-on-usd-eth-and-btc-in-4-minutes-641f057e283b"
-        },
-        {
-            "name": "Fixed interest",
-            "url": "https://medium.com/element-finance/fixed-rate-interest-markets-a-casual-users-journey-through-fixed-rate-interest-using-element-50f420df1859"
-        },
-        {
             "name": "Bug bounty",
             "url": "https://immunefi.com/bounty/elementfinance/"
         },
@@ -127,7 +111,7 @@ export const Links: {
         },
         {
             "name": "Jobs",
-            "url": "tbc"
+            "url": "https://wellfound.com/company/delv-tech/jobs/"
         }
     ],
     "Community": [
