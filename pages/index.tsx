@@ -451,11 +451,15 @@ export default function Home() {
                 </motion.div>
               </div>
               <div className="mobile_nav_projects">
-                {sections.map((section, index) => (
-                  <div className={styles.mobile_nav_item} onClick={() => { setActiveSection(index); setMobileMenuOpen(false) }} key={"nav-" + section.id + index}>
-                    {section.id}
-                  </div>
-                ))}
+                {
+                  sections.map((section, index) => {
+                    return section.id == "Build" ? null : (
+                      <div className={styles.mobile_nav_item} onClick={() => { setActiveSection(index); setMobileMenuOpen(false) }} key={"nav-" + section.id + index}>
+                        {section.id}
+                      </div>
+                    )
+                  }) 
+                }
               </div>
               <div className="mobile_nav_links">
                 {Object.keys(Links).map((group, index) => (
@@ -589,18 +593,18 @@ export default function Home() {
           <motion.div className={styles.nav_footer}>
             {Object.keys(Links).map((group, index) => (
               group == "Build" ? null : // hotfix for socials
-              <div key={index} onClick={() => setFooterToggles({ ...footerToggles, [group]: !footerToggles[group] })} className={footerToggles[group] ? styles.nav_footer_group_active : styles.nav_footer_group}>
-                <div>
-                  {Links[group].map((link, index) => (
-                    <div key={index}>
-                      <a href={link.url}>{link.name}</a>
-                    </div>
-                  ))}
+                <div key={index} onClick={() => setFooterToggles({ ...footerToggles, [group]: !footerToggles[group] })} className={footerToggles[group] ? styles.nav_footer_group_active : styles.nav_footer_group}>
+                  <div>
+                    {Links[group].map((link, index) => (
+                      <div key={index}>
+                        <a href={link.url}>{link.name}</a>
+                      </div>
+                    ))}
+                  </div>
+                  <span className={styles.nav_footer_group_title}>
+                    {group}
+                  </span>
                 </div>
-                <span className={styles.nav_footer_group_title}>
-                  {group}
-                </span>
-              </div>
             ))}
           </motion.div>
         </div>
