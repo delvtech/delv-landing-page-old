@@ -657,7 +657,7 @@ export default function Home() {
                 opacity: activeSection == (sections.length - 1) ? 0 : 1,
                 y: caretPosition,
                 transition: { 
-                  duration: 0.1,
+                  duration: 0.3,
                   ease: 'linear'
                 }
               }}
