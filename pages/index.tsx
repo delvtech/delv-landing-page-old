@@ -282,7 +282,7 @@ export default function Home() {
         <link rel="shortcut icon" href="/favicon.png" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@delv-tech" />
+        <meta name="twitter:site" content="@delv_tech" />
         <meta name="twitter:title" content="DELV" />
         <meta
           name="twitter:description"
