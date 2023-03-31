@@ -140,7 +140,7 @@ const sections: Section[] = [
     id: 'Delv',
     layout: 'main',
     title: 'The Factory for DeFi',
-    description: 'Delv is developing the complete suite of decentralized finance, encompassing everything from core infrastructure to structured products. Our protocols operate in tandem to facilitate the seamless creation of a novel financial system.',
+    description: 'Delv is developing the complete suite of decentralized finance. From core infrastructure to structured products, our protocols work together to help create and usher in the new financial system.',
     backgroundClass: 'bg-white',
   },
   {
@@ -157,7 +157,7 @@ const sections: Section[] = [
   {
     id: 'Council',
     title: 'Council protocol',
-    description: 'Council is a decentralized governance system and a suite of tools that allows a community to deploy and manage a DAO. It represents a new era of governance innovation, allowing anyone to build adaptable governance systems using the security of on-chain governance while allowing for unprecedented modularity and flexibility.',
+    description: 'Council is a decentralized governance system and suite of tools that allows a community to deploy and manage a DAO. It represents a new era of governance innovation, allowing anyone to build adaptable governance systems using the security of on-chain governance while allowing for unprecedented modularity and flexibility.',
     link: 'https://council.element.fi/',
     backgroundClass: 'bg-black',
     logo: {
@@ -190,7 +190,7 @@ const sections: Section[] = [
   {
     id: 'Echo',
     title: 'Browser-Layer P2P',
-    description: 'Echo is a new P2P protocol that focuses on the browser-layer. It enables any visitor of a web3 application to peer/host infrastructure needed to power the application. Echo is a natural adaptor for Council, allowing DAOs to deploy frontends and data services for their products. It enables a world of truly decentralized protocols and DAOs.',
+    description: 'Echo is a new P2P protocol that focuses on the browser-layer. It enables visitors of web3 applications to peer/host infrastructure needed to power the application. Echo is a natural progression for Council, allowing DAOs to run frontends and data services. It enables a world of truly decentralized protocols and DAOs.',
     backgroundClass: 'bg-black',
     logo: {
       w: 286,
@@ -200,7 +200,7 @@ const sections: Section[] = [
   {
     id: 'Agent_0',
     title: 'Data Simulation',
-    description: 'We built a data simulation framework to aid progress on the new Hyperdrive AMM design before implementing it in Solidity. The simulation models include smart agents that allow our team to graph/stress test cryptoeconomic systems against various edge cases, while simultaneously uncovering macroscale effects to optimize the performance, efficiency, and effectiveness of the system.\n\n We will leverage reinforcement machine learning to further our research endeavors, starting with discovering profitable as well as pathological behavior patterns.',
+    description: 'Agent_0 is a data simulation framework to aid progress on the new Hyperdrive AMM design before implementing it in Solidity. The models include smart agents that allow us to graph/stress test against all scenarios. It will also leverage reinforcement machine learning to further our research endeavors.',
     backgroundClass: 'bg-black',
     logo: {
       w: 400,
