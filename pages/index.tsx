@@ -256,8 +256,8 @@ export default function Home() {
         <title>Delv</title>
         <meta name="description" content="Delv - The Factory for DeFi" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-
+        <link rel="shortcut icon" href="/favicon.png" />
+        
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@delv-tech" />
         <meta name="twitter:title" content="Delv" />
