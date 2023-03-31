@@ -79,8 +79,8 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
         return () => window.removeEventListener('resize', handleResize)
     }, [isMobile, isTablet, isDesktop])
 
-    if (!activeSection) return null
-    if (activeSection.layout === 'main') {
+    if (!sections[activeSectionPosition]) return null
+    if (sections[activeSectionPosition].layout === 'main') {
         return (
             <div style={{ width: "100%" }}>
                 <motion.div
@@ -110,11 +110,11 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                                     marginBottom: isMobile ? "40px" : "7%",
                                     fontSize: isMobile ? '39px' : '3rem',
                                 }}>
-                                {activeSection?.title}
+                                {sections[activeSectionPosition]?.title}
                             </h1>
-                            <p className='font-sec' style={{width: "100%" }}>
+                            <p className='font-sec' style={{ width: "100%" }}>
                                 <Balancer>
-                                    {activeSection?.description}
+                                    {sections[activeSectionPosition]?.description}
                                 </Balancer>
                             </p>
                         </AnimatePresence>
@@ -124,7 +124,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
             </div>
         )
     }
-    if (activeSection.layout === 'about') {
+    if (sections[activeSectionPosition].layout === 'about') {
         return (<div>
             <motion.div
                 className={styles.screen}
@@ -136,11 +136,11 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                 >
                     <AnimatePresence mode="wait">
                         <h1 className='main-intro' style={{ marginTop: "5%" }}>
-                            {activeSection?.title}
+                            {sections[activeSectionPosition]?.title}
                         </h1>
                         <p className='font-sec prod-descr'>
                             <Balancer>
-                                {activeSection?.description}
+                                {sections[activeSectionPosition]?.description}
                             </Balancer>
                         </p>
                     </AnimatePresence>
@@ -159,8 +159,8 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                             {/* ))} */}
                         </div>
                     </p>
-                    {activeSection?.link && (
-                        <a href={activeSection?.link} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                    {sections[activeSectionPosition]?.link && (
+                        <a href={sections[activeSectionPosition]?.link} target="_blank" rel="noopener noreferrer" className={styles.link}>
                             <Image src="/ext.svg" width={20} height={20} alt="External Link" />
                         </a>
                     )}
@@ -171,13 +171,13 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                         style={{ width: '600px', height: '300px', position: 'relative', marginTop: '30px', maxWidth: "100%" }}
                         transition={{ duration: 1, fill: "forwards" }}
                     >
-                        {activeSection?.logo && (<Image
-                            width={activeSection.logo.w}
-                            height={activeSection.logo.h}
-                            src={`/assets/${activeSection?.id.toLowerCase()}.svg`}
-                            alt={activeSection?.title}
+                        {sections[activeSectionPosition]?.logo && (<Image
+                            width={sections[activeSectionPosition].logo.w}
+                            height={sections[activeSectionPosition].logo.h}
+                            src={`/assets/${sections[activeSectionPosition]?.id.toLowerCase()}.svg`}
+                            alt={sections[activeSectionPosition]?.title}
                             style={{
-                                marginTop: activeSection.id == "Council" ? '50px' : '0px',
+                                marginTop: sections[activeSectionPosition].id == "Council" ? '50px' : '0px',
                             }}
                         />)}
                     </motion.div>
@@ -194,9 +194,9 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     {...animations.normal()}
                     transition={{duration: 1}}
                 >
-                    {(sections.slice(activeSectionPosition-1, activeSectionPosition+2).map((section, i) => (
+                    {(sections.slice(sections[activeSectionPosition]Position-1, sections[activeSectionPosition]Position+2).map((section, i) => (
                         <div key={section.id}>
-                            <a key={i} onClick={() => setActiveSection(activeSectionPosition+i-1)} className={activeSectionPosition+i-1 == activeSectionPosition ? 'active' : ''}>
+                            <a key={i} onClick={() => setsections[activeSectionPosition](sections[activeSectionPosition]Position+i-1)} className={sections[activeSectionPosition]Position+i-1 == sections[activeSectionPosition]Position ? 'active' : ''}>
                                 {section.id}
                             </a>
                         </div>
@@ -210,18 +210,18 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                 <AnimatePresence mode="wait">
                     {!isMobile &&
                         <h1 style={{ marginTop: "5%" }}>
-                            {activeSection?.title}
+                            {sections[activeSectionPosition]?.title}
                         </h1>
                     }
 
                     <p className='font-sec prod-descr'>
                         <Balancer>
-                            {activeSection?.description}
+                            {sections[activeSectionPosition]?.description}
                         </Balancer>
                     </p>
                 </AnimatePresence>
-                {activeSection?.link && (
-                    <a href={activeSection?.link} target="_blank" rel="noopener noreferrer" className={styles.link} key={activeSection + "link"}>
+                {sections[activeSectionPosition]?.link && (
+                    <a href={sections[activeSectionPosition]?.link} target="_blank" rel="noopener noreferrer" className={styles.link} key={sections[activeSectionPosition] + "link"}>
                         <Image src="/ext.svg" width={20} height={20} alt="External Link" />
                     </a>
                 )}
@@ -230,12 +230,12 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                 <motion.div
                     {...animations.logo()}
                     style={{
-                        // width: `${activeSection.logo?.w}px`,
-                        // height: `${activeSection.logo?.h}px`,
+                        // width: `${sections[activeSectionPosition].logo?.w}px`,
+                        // height: `${sections[activeSectionPosition].logo?.h}px`,
                         position: 'relative',
                         marginTop: isMobile ? '0' : '30px',
                         minWidth: '600px',
-                        maxWidth: (activeSection.id == 'Echo' && isMobile) ? '206px' : '100%',
+                        maxWidth: (sections[activeSectionPosition].id == 'Echo' && isMobile) ? '206px' : '100%',
                         maxHeight: '600px',
                         display: 'flex',
                         justifyContent: 'center',
@@ -247,12 +247,12 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     transition={{ duration: 1, fill: "forwards" }}
                 >
                     <AnimatePresence mode='wait'>
-                        {activeSection?.logo && (<img
-                            src={`/assets/${activeSection?.id.toLowerCase()}.svg`}
-                            alt={activeSection?.id}
-                            key={"main-logo-" + activeSection?.id}
+                        {sections[activeSectionPosition]?.logo && (<img
+                            src={`/assets/${sections[activeSectionPosition]?.id.toLowerCase()}.svg`}
+                            alt={sections[activeSectionPosition]?.id}
+                            key={"main-logo-" + sections[activeSectionPosition]?.id}
                             style={{
-                                marginTop: (activeSection.id === "Council" || activeSection.id == "Element") ? '40px' : '20px',
+                                marginTop: (sections[activeSectionPosition].id === "Council" || sections[activeSectionPosition].id == "Element") ? '40px' : '20px',
                             }}
                         />)}
                     </AnimatePresence>
