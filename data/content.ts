@@ -85,7 +85,7 @@ export const sections: Section[] = [
         }
     },
     {
-        id: 'About',
+        id: 'Build',
         hidden: true,
         layout: 'about',
         title: 'Build with us',

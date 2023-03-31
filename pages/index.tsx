@@ -25,31 +25,26 @@ const useScrollDirection = (
     }
     return false;
   };
-  useEffect(() => {
-    let scrollTimeout: any = null;
-    const handleScroll = (event: WheelEvent) => {
-      if (isScrolling
-        // || isInsideSections(event.target as HTMLElement)
-      ) {
-        return;
-      }
-      caretPosition += event.deltaY / 3;
-      if (caretPosition < 0) {
-        caretPosition = 0;
-      } else if (caretPosition > 34 * (sections.length - 2)) {
-        caretPosition = 34 * (sections.length - 2);
-      }
-      setCaretPosition(caretPosition);
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      scrollTimeout = setTimeout(() => {
-        let section: number = Math.round(caretPosition / 34);
 
-        setCaretPosition(section * 34);
-        setActiveSection(section);
-      }, 200);
-    };
+  useEffect(() => {
+    let isBlocked = false;
+
+    // const handleScroll = (event: WheelEvent) => {
+    //   if (isBlocked) {
+    //     return;
+    //   }
+
+    //   if (event.deltaY > 80) {
+    //     handleScrollDown();
+    //   } else if (event.deltaY < -80) {
+    //     handleScrollUp();
+    //   }
+
+    //   isBlocked = true;
+    //   setTimeout(() => {
+    //     isBlocked = false;
+    //   }, 1000);
+    // };
 
     const handleTouchStart = (event: TouchEvent) => {
       setTouchStartY(event.touches[0].clientY);
@@ -80,13 +75,13 @@ const useScrollDirection = (
       setTouchStartY(null);
     };
 
-    window.addEventListener('wheel', handleScroll);
+    // window.addEventListener('wheel', handleScroll);
     window.addEventListener('touchstart', handleTouchStart);
     window.addEventListener('touchmove', handleTouchMove);
     window.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      window.removeEventListener('wheel', handleScroll);
+      // window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
@@ -345,7 +340,7 @@ export default function Home() {
                   >
 
                     <Image
-                      src={`/assets/delv-${(section?.id !== 'About') && section?.id.toLowerCase() || 'delv'}.svg`}
+                      src={`/assets/delv-${(section?.id !== 'Build') && section?.id.toLowerCase() || 'delv'}.svg`}
                       width={24}
                       height={47}
                       alt={section?.id}
@@ -443,7 +438,7 @@ export default function Home() {
                       >
 
                         <Image
-                          src={`/assets/delv-${(section?.id !== 'About') && section?.id.toLowerCase() || 'delv'}.svg`}
+                          src={`/assets/delv-${(section?.id !== 'Build') && section?.id.toLowerCase() || 'delv'}.svg`}
                           width={24}
                           height={47}
                           alt={section?.id}
@@ -539,9 +534,9 @@ export default function Home() {
           </motion.div>
           <motion.div className={styles.nav_footer + " mobile-hidden"}>
             <a href="#" onClick={() => setActiveSection(7)}>
-              About
+              Build
             </a>
-            <a href="#">Terms</a>
+            <a href="https://elementfi.s3.us-east-2.amazonaws.com/element-finance-terms-of-service.pdf" target="_blank">Terms</a>
           </motion.div>
         </div>
         <div className={styles.content}>
@@ -593,6 +588,7 @@ export default function Home() {
         <div className={styles.sidebar_right + " mobile-hidden"}>
           <motion.div className={styles.nav_footer}>
             {Object.keys(Links).map((group, index) => (
+              group == "Build" ? null : // hotfix for socials
               <div key={index} onClick={() => setFooterToggles({ ...footerToggles, [group]: !footerToggles[group] })} className={footerToggles[group] ? styles.nav_footer_group_active : styles.nav_footer_group}>
                 <div>
                   {Links[group].map((link, index) => (
