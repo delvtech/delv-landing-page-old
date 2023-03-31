@@ -105,10 +105,10 @@ export const Links: {
             "name": "Bug bounty",
             "url": "https://immunefi.com/bounty/elementfinance/"
         },
-        {
-            "name": "Brand assets",
-            "url": "https://github.com/element-fi/brand-assets"
-        },
+        // {
+        //     "name": "Brand assets",
+        //     "url": "https://github.com/element-fi/brand-assets"
+        // },
         {
             "name": "Jobs",
             "url": "https://wellfound.com/company/delv-tech/jobs/"
