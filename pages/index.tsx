@@ -706,6 +706,37 @@ export default function Home() {
           </motion.div>
         </div>
         <div className={styles.content}>
+        <motion.div
+              className={styles.arrow_down}
+              style={{
+                  width: '32px',
+                  height: '32px',
+                  background: `url(/assets/arrow.svg) center center / contain no-repeat`,
+                  position: 'absolute',
+                  bottom: '10%',
+                  left: '50%',
+                  translateX: '-50%',
+                  zIndex: 1,
+                  cursor: 'pointer'
+              }}
+              animate={{
+                  scale: [1, 0.9, 1, 0.95, 1.02, 0.97, 1],
+                  y: [0, -10, 0, -10, 0, -10, 0],
+              }}
+              transition={{
+                  duration: 10,
+                  ease: "easeInOut",
+                  times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+                  repeat: Infinity
+              }}
+              exit={{
+                  opacity: 0,
+                  y: 10,
+                  transition: { duration: 0.3, fill: "forwards" }
+              }}
+              onClick={() => setActiveSection(activeSection == (sections.length - 1) ? 0 : activeSection + 1)}
+          >
+          </motion.div>
           <AnimatePresence mode="wait">
             <ProjectBackground projectId={sections[activeSection]?.id} key={sections[activeSection]?.id} />
           </AnimatePresence>

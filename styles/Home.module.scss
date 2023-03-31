@@ -198,12 +198,16 @@
 }
 
 @media screen and (max-height: 770px) {
+    .arrow_down {
+        display: none;
+    }
    .content {
         padding-top: 100px;
         align-items: stretch;
    }
    .main {
-        max-height: calc(100vh - 100px);;
+        max-height: calc(100vh - 100px);
+        max-height: -webkit-fill-available;;
    }
 }
 

@@ -67,7 +67,7 @@ export function ProjectBackground({ projectId }) {
                         duration: 20,
                         ease: "easeInOut",
                         times: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                        loop: Infinity,
+                        repeat: Infinity,
                         repeatDelay: 1
                     }}
                     exit={{
@@ -79,8 +79,7 @@ export function ProjectBackground({ projectId }) {
                 >
 
                 </motion.div>
-
-
+                        
 
             </motion.div>
         ),
@@ -153,7 +152,7 @@ export function ProjectBackground({ projectId }) {
                         opacity: 1,
                         width: '100%',
                         backgroundSize: isMobile ? "80%" : '60%',
-                        backgroundPositionY: isMobile ? '90%' : 'center',
+                        backgroundPositionY: isMobile ? '80%' : 'center',
                     }}
                     animate={{
                         opacity: 1,
