@@ -42,6 +42,12 @@
         gap: 70px;
         // background: red;
     }
+    .mobile_flex {
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        line-height: 1.5;
+    }
     .project_logo {
         // img {
         //     margin-top: 0 !important;

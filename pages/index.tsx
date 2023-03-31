@@ -44,7 +44,7 @@ const useScrollDirection = (
         ) {
         return;
       }
-      caretPosition += event.deltaY / 2;
+      caretPosition += event.deltaY / 3;
       // caretPosition min 0 max 34*sections.length
       if (caretPosition < 0) {
         caretPosition = 0;
@@ -283,12 +283,12 @@ const preloadImages = () => {
     if (section.logo) {
       return (
         <>
-          <link
+          {/* <link
             key={section.id + 'logo'}
             rel="preload"
             href={`/assets/${section.id.toLowerCase()}.png`}
             as="image"
-          />
+          /> */}
           <link
             key={section.id + 'arc'}
             rel="preload"
@@ -657,7 +657,7 @@ export default function Home() {
                 opacity: activeSection == (sections.length - 1) ? 0 : 1,
                 y: caretPosition,
                 transition: { 
-                  duration: 0.3,
+                  duration: isScrolling ? 0 : 0.3,
                   ease: 'linear'
                 }
               }}

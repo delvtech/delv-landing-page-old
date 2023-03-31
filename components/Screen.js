@@ -125,7 +125,7 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                     transition={{duration: 1}}
                     >
                     <AnimatePresence mode="wait">
-                        <h1 className='main-intro' style={{marginTop:"30%"}}>
+                        <h1 className='main-intro' style={{marginTop:"5%"}}>
                             {activeSection?.title}
                         </h1>
                         <p className='font-sec prod-descr'>
@@ -135,17 +135,19 @@ export function Screen({ activeSection, sections, setActiveSection, activeSectio
                         </p>
                     </AnimatePresence>
                     <p className='font-sec prod-descr' style={{marginTop:"10%", fontSize: "13px", lineHeight: "19px"}}>
-                        {Object.keys(Links).map((group, index) => (
-                            <div key={"group"+group} style={{marginTop:"30px"}}>
-                                <div className={styles.links}>
-                                    {Links[group].map((link, index) => (
-                                    <div key={group+index}>
-                                        <a href={link.url}>{link.name}</a>
+                        <div className={styles.mobile_flex}>
+                            {Object.keys(Links).map((group, index) => (
+                                <div key={"group"+group} style={{marginTop:"30px"}}>
+                                    <div className={styles.links}>
+                                        {Links[group].map((link, index) => (
+                                        <div key={group+index}>
+                                            <a href={link.url}>{link.name}</a>
+                                        </div>
+                                        ))}
                                     </div>
-                                    ))}
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </p>
                     {activeSection?.link && (
                         <a href={activeSection?.link} target="_blank" rel="noopener noreferrer" className={styles.link}>

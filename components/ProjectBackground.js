@@ -152,7 +152,8 @@ export function ProjectBackground({ projectId }) {
                         transform: 'none',
                         opacity: 1,
                         width: '100%',
-                        backgroundSize: '60%',
+                        backgroundSize: isMobile ? "80%" : '60%',
+                        backgroundPositionY: isMobile ? '90%' : 'center',
                     }}
                     animate={{
                         opacity: 1,
