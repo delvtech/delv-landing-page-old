@@ -117,7 +117,7 @@ export const Links: {
     "Community": [
         {
             "name": "Twitter",
-            "url": "https://twitter.com/element_fi"
+            "url": "https://twitter.com/delv_tech"
         },
         {
             "name": "Discord",
