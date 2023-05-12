@@ -107,7 +107,7 @@ export const Links: {
         },
         // {
         //     "name": "Brand assets",
-        //     "url": "https://github.com/delv-tech/brand-assets"
+        //     "url": "https://github.com/delvtech/brand-assets"
         // },
         {
             "name": "Jobs",
@@ -129,7 +129,7 @@ export const Links: {
         },
         {
             "name": "Github",
-            "url": "https://github.com/delv-tech"
+            "url": "https://github.com/delvtech"
         },
         {
             "name": "YouTube",
