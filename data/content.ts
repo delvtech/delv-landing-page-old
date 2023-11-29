@@ -24,7 +24,6 @@ export const sections: Section[] = [
         id: 'Element',
         title: 'Fixed rate protocol',
         description: 'It all began with an open-source protocol for fixed and variable yield markets, originally called Element.',
-        link: 'https://paper.element.fi/',
         backgroundClass: 'bg-white',
         logo: {
             w: 325,
@@ -58,30 +57,9 @@ export const sections: Section[] = [
         title: 'A new way to trade rates',
         description: 'Hyperdrive is the next research leap from DELV on variable and fixed rate primitives. It is an advanced AMM featuring no preset expiration dates, no fragmented liquidity, and no LP rollovers — aka everlasting liquidity.',
         backgroundClass: 'bg-black',
-        link: 'https://hyperdrive.element.fi/',
         logo: {
             w: 400,
             h: 174,
-        }
-    },
-    {
-        id: 'Echo',
-        title: 'Browser-Layer P2P',
-        description: 'Echo is a new P2P protocol that focuses on the browser-layer. It enables visitors of web3 applications to peer/host infrastructure needed to power the application. Echo is a natural progression for Council, allowing DAOs to run frontends and data services. It enables a world of truly decentralized protocols and DAOs.',
-        backgroundClass: 'bg-black',
-        logo: {
-            w: 286,
-            h: 101,
-        }
-    },
-    {
-        id: 'Agent_0',
-        title: 'Data Simulation',
-        description: 'Agent_0 is a data simulation framework to aid progress on the new Hyperdrive AMM design before implementing it in Solidity. The models include smart agents that allow us to graph/stress test against all scenarios. It will also leverage reinforcement machine learning to further our research endeavors.',
-        backgroundClass: 'bg-black',
-        logo: {
-            w: 400,
-            h: 97,
         }
     },
     {
