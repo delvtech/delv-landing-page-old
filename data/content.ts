@@ -34,7 +34,7 @@ export const sections: Section[] = [
         id: 'Council',
         title: 'Council protocol',
         description: 'The time to govern then came with Council, a decentralized governance system and a suite of tools that allow a community to deploy and manage a DAO. With Council in place, on March 31, 2022, the team would relinquish control of the Element Protocol to the community.',
-        link: 'https://council.element.fi/',
+        link: 'https://council.delv.tech/',
         backgroundClass: 'bg-black',
         logo: {
             w: 400,
@@ -45,7 +45,7 @@ export const sections: Section[] = [
         id: 'Elfiverse',
         title: 'NFTs meet DeFi',
         description: 'The lore of the Element DAO was born with Elfiverse – an endeavor to intersect the DeFi and NFT worlds while catalyzing network effects and community building. Elfiverse pushes the boundaries of on-chain governance allowing communities to look beyond the 1-token-1-vote system, driving inclusive governance participation for all.',
-        link: 'https://elfiverse.element.fi/',
+        link: 'https://elfiverse.delv.tech/',
         backgroundClass: 'bg-black',
         logo: {
             w: 384,
@@ -81,7 +81,7 @@ export const Links: {
     "Build": [
         {
             "name": "Bug bounty",
-            "url": "https://immunefi.com/bounty/elementfinance/"
+            "url": "#"
         },
         // {
         //     "name": "Brand assets",
@@ -103,7 +103,7 @@ export const Links: {
         },
         {
             "name": "Blog",
-            "url": "https://blog.element.fi/"
+            "url": "https://blog.delv.tech/"
         },
         {
             "name": "Github",
