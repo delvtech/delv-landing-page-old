@@ -608,7 +608,7 @@ export default function Home() {
               Build
             </a>
             <a
-              href="https://elementfi.s3.us-east-2.amazonaws.com/element-finance-terms-of-service.pdf"
+              href="https://delv-public.s3.us-east-2.amazonaws.com/delv-terms-of-service.pdf"
               target="_blank"
             >
               Terms
